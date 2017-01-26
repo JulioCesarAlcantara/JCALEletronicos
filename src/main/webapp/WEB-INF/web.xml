@@ -4,9 +4,17 @@
         <servlet-name>cadPro</servlet-name>
         <servlet-class>cdc.controller.ServletCadastroDeProdutos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>pesqProduto</servlet-name>
+        <servlet-class>cdc.controller.ServletPesquisaProduto</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>cadPro</servlet-name>
         <url-pattern>/cadPro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>pesqProduto</servlet-name>
+        <url-pattern>/pesqProduto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

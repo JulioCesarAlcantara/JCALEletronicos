@@ -19,6 +19,8 @@ public class ServletCadastroDeProdutos extends HttpServlet {
             throws ServletException, IOException {
 
         String cmd = request.getParameter("cmd");
+        
+        System.out.println("cmd: " + cmd);
         DAO dao;
 
         request.setAttribute("adminEmail", getServletConfig().getInitParameter("adminEmail"));
@@ -28,17 +30,20 @@ public class ServletCadastroDeProdutos extends HttpServlet {
         }
 
         try {
-            dao = new ProdutoDAO();
-            RequestDispatcher rd = null; //setando o objeto "despachador
+            //dao = new ProdutoDAO();
+            //RequestDispatcher rd = null; //setando o objeto "despachador
             ImagemProdutoDAO imageDAO = new ImagemProdutoDAO();
             ProdutoDAO produto = new ProdutoDAO();
             
             if (cmd.equalsIgnoreCase("saveAdd")) {
                 String nomeProduto = request.getParameter("nome");
                 String descricaoProduto = request.getParameter("descricao");
-                String preco = request.getParameter("preco");
+                String precoProduto = request.getParameter("preco");
+                System.out.println("aqui ! ====");
                 //convertendo preço em float; 
-                float precoProduto = Float.parseFloat(preco);
+                float preco = Float.parseFloat(precoProduto);   
+                
+                System.out.println("aqui 2");
                 String categoria = request.getParameter("categoria");
                 String qntProduto = request.getParameter("quantidade");
                 String imagem1 = request.getParameter("imgPro1");
@@ -47,7 +52,7 @@ public class ServletCadastroDeProdutos extends HttpServlet {
                 
                 System.out.println("1" + nomeProduto);
                 System.out.println("2" + descricaoProduto);
-                System.out.println("3" + precoProduto);
+                System.out.println("3" + preco);
                 System.out.println("4" + categoria);
                 System.out.println("5" + qntProduto);
                 System.out.println("6" + imagem1);
@@ -57,16 +62,17 @@ public class ServletCadastroDeProdutos extends HttpServlet {
                 //convertendo a qntd do produto para int; 
                 int quantidade = Integer.parseInt(qntProduto);
 
-                Produto produtoMontado = new Produto(nomeProduto, precoProduto, descricaoProduto, categoria, quantidade);
-                dao.salvar(produtoMontado);
+                Produto produtoMontado = new Produto(nomeProduto, preco, descricaoProduto, categoria, quantidade);
+                produto.salvar(produtoMontado);
 
                 //busca o id do produto add, para add imagem; 
                 int idProduto = produto.buscaIdDoProdutoPeloNome(nomeProduto);
 
+                System.out.println("idProduto: " + idProduto);
                 ImagemProduto imgPro = new ImagemProduto(imagem1, imagem2, imagem3, idProduto); 
                 imageDAO.salvar(imgPro);
                 
-                getServletContext().getRequestDispatcher("/produtos?cmd=listar").forward(request, response);
+                //getServletContext().getRequestDispatcher("/produtos?cmd=listar").forward(request, response);
             } 
 
         } catch (Exception e) {

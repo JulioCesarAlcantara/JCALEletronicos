@@ -71,7 +71,7 @@ public class ImagemProdutoDAO implements DAO {
         }
 
         try {
-            String sql = "INSERT INTO ImagemDeProduto (imagem1,imagem2,imagem3,idProduto) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO ImagemProduto (imagem1,imagem2,imagem3,idProdutoImagemProduto) VALUES (?,?,?,?)";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             ps.setString(1, ip.getImagem1());
