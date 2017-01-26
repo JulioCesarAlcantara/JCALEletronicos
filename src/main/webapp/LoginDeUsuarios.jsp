@@ -24,24 +24,25 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><span>JCALEletronicos</span><br></a>
+                     <a class="navbar-brand"><span><h3> JCALEletronicos </h3></span></a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="TelaDeProdutos.jsp">Home</a>
+                            <br><a href="TelaDeProdutos.jsp">Home</a>
                         </li>
                         <li>
-                            <a href="#">Contacts</a>
+                            <br><a href="#">Contacts</a>
                         </li>
                     </ul>
                 </div>
+                <br>
             </div>
         </div>
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-md-3 col-md-offset-4">
-                    <h1 class="text-center login-title">Faça seu login aqui</h1><br>
+                    <h1 class="text-center login-title">Sign in</h1><br>
                     <div class="account-wall">
                         <form class="form-signin">
                             <input type="text" class="form-control" placeholder="Email" required autofocus><br>
