@@ -1,7 +1,7 @@
 package cdc.model;
 
 
-class ImagemProduto {
+public class ImagemProduto {
     
     private Integer idImagemProduto;
     private String imagem1;
@@ -12,8 +12,7 @@ class ImagemProduto {
     public ImagemProduto() {
     }
 
-    public ImagemProduto(Integer idImagemProduto, String imagem1, String imagem2, String imagem3, Integer idProdutoImagemProduto) {
-        this.idImagemProduto = idImagemProduto;
+    public ImagemProduto(String imagem1, String imagem2, String imagem3, Integer idProdutoImagemProduto) {  
         this.imagem1 = imagem1;
         this.imagem2 = imagem2;
         this.imagem3 = imagem3;
