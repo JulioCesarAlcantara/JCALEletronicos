@@ -5,16 +5,34 @@
         <servlet-class>cdc.controller.ServletCadastroDeProdutos</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>pesqProduto</servlet-name>
         <servlet-class>cdc.controller.ServletPesquisaProduto</servlet-class>
+=======
+        <servlet-name>ServletUsuarios</servlet-name>
+        <servlet-class>cdc.controller.ServletClientes</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>clientes</servlet-name>
+        <servlet-class>cdc.controller.ServletClientes</servlet-class>
+>>>>>>> 218da84bfc6575a9c27ad83c0224b746dabca502
     </servlet>
     <servlet-mapping>
         <servlet-name>cadPro</servlet-name>
         <url-pattern>/cadPro</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>pesqProduto</servlet-name>
         <url-pattern>/pesqProduto</url-pattern>
+=======
+        <servlet-name>ServletUsuarios</servlet-name>
+        <url-pattern>/ServletUsuarios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>clientes</servlet-name>
+        <url-pattern>/clientes</url-pattern>
+>>>>>>> 218da84bfc6575a9c27ad83c0224b746dabca502
     </servlet-mapping>
     <session-config>
         <session-timeout>

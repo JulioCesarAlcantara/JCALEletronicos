@@ -11,7 +11,7 @@
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
               rel="stylesheet" type="text/css">
         <link href="/CSS.css" rel="stylesheet" type="text/css">
-        <title> Cadasto de Usuários</title>
+        <title> Cadasto de Clientes</title>
     </head>
 
     <body>
@@ -40,59 +40,72 @@
             </div>
         </div>
         <div class="container">
-            <h1 class="well">Cadastro de Usuários</h1>
+            <h1 class="well">Cadastro de Clientes</h1>
             <div class="col-lg-12 well">
                 <div class="row">
-                    <form>
+                    <form class="form-signin" action="clientes" method="post">
+                        <input type="hidden" name="cmd" value="saveAdd"/>
                         <div class="col-sm-12">
                             <div class="row">
                                 <div class="col-sm-6 form-group">
                                     <label>Primeiro Nome</label>
-                                    <input type="text" placeholder="Entre com 1º nome aqui .." class="form-control" name="primeiroNomeUsuario">
+                                    <input type="text" placeholder="Entre com 1º nome aqui .." class="form-control" name="primeiroNomeCliente">
                                 </div>
                                 <div class="col-sm-6 form-group">
                                     <label>Segundo Nome</label>
-                                    <input type="text" placeholder="Entre com 2º nome aqui .." class="form-control" name="segundoNomeUsuario">
+                                    <input type="text" placeholder="Entre com 2º nome aqui .." class="form-control" name="segundoNomeCliente">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 form-group">
                                     <label>Telefone</label>
-                                    <input type="text" placeholder="Entre com Telefone aqui.." class="form-control" name="telefoneUsuario">
+                                    <input type="text" placeholder="Entre com Telefone aqui.." class="form-control" name="telefoneCliente">
                                 </div>		
                                 <div class="col-sm-6 form-group">
                                     <label>Email</label>
-                                    <input type="text" placeholder="Entre com Email aqui.." class="form-control" name="emailUsuario">
+                                    <input type="text" placeholder="Entre com Email aqui.." class="form-control" name="emailCliente">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-4 form-group">
                                     <label>Data de Nascimento</label>
-                                    <input type="date" class="form-control">
+                                    <input type="text" class="form-control" name="dataNascimentoCliente">
                                 </div>		
                                 <div class="col-sm-4 form-group">
                                     <label>Sexo</label>
-                                    <select name="sexoUsuario" class="form-control selectpicker" >
+                                    <select name="sexoCliente" class="form-control selectpicker" >
                                         <option value="-1" >Escolha seu sexo</option>
                                         <option value="m" >Masculino</option>
                                         <option value="f" >Feminino</option>
                                     </select>
                                 </div>	
+                                <div class="col-sm-4 form-group">
+                                    <label>CPF</label>
+                                    <input type="text" placeholder="Cadastro de Pessoa Física aqui.." class="form-control" name="cpfCliente">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Endereço</label>
+                                <textarea placeholder="Entre com o Endereço aqui.." rows="3" class="form-control" name="enderecoCliente"></textarea>
+                            </div>	
+                            <div class="row">
+                                <div class="col-sm-4 form-group">
+                                    <label>Cidade</label>
+                                    <input type="text" placeholder="Entre com o nome da cidade aqui.." class="form-control" name="cidadeCliente">
+                                </div>	
+                                <div class="col-sm-4 form-group">
+                                    <label>Estado</label>
+                                    <input type="text" placeholder="Entre com o Estado aqui.." class="form-control" name="estadoCliente">
+                                </div>	
+                                <div class="col-sm-4 form-group">
+                                    <label>CEP</label>
+                                    <input type="text" placeholder="Entre com o CEP aqui.." class="form-control" name="cepCliente">
+                                </div>		
                             </div>
                             <div class="row">
                                 <div class="col-sm-4 form-group">
-                                    <label>Tipo de Usuário</label>
-                                    <select name="tipoUsuario" class="form-control selectpicker" >
-                                        <option value="-1" >Escolha o tipo do usuário</option>
-                                        <option value="a" >Administrador</option>
-                                        <option value="g" >Gerente</option>
-                                        <option value="e" >Encarregado</option>
-                                        <option value="v" >Vendedor</option>
-                                    </select>
-                                </div>	
-                                <div class="col-sm-4 form-group">
                                     <label>Defina uma Senha</label>
-                                    <input type="password" placeholder="Entre com sua nova senha aqui.." class="form-control" name="senhaUsuario">
+                                    <input type="password" placeholder="Entre com sua nova senha aqui.." class="form-control" name="senhaCliente">
                                 </div>	
 
                             </div>
