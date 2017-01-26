@@ -1,6 +1,6 @@
 package cdc.model;
 
-public class ProdutoImagem {
+public class MostraProdutoImagem {
     
     private Integer idProduto; 
     private String nomeProduto; 
@@ -14,10 +14,10 @@ public class ProdutoImagem {
     private String imagem3;
     private Integer idProdutoImagemProduto; 
 
-    public ProdutoImagem() {
+    public MostraProdutoImagem() {
     }
 
-    public ProdutoImagem(Integer idProduto, String nomeProduto, float precoProduto, String descricaoProduto, String categoriaProduto, int qntProduto, Integer idImagemProduto, String imagem1, String imagem2, String imagem3, Integer idProdutoImagemProduto) {
+    public MostraProdutoImagem(Integer idProduto, String nomeProduto, float precoProduto, String descricaoProduto, String categoriaProduto, int qntProduto, Integer idImagemProduto, String imagem1, String imagem2, String imagem3, Integer idProdutoImagemProduto) {
         this.idProduto = idProduto;
         this.nomeProduto = nomeProduto;
         this.precoProduto = precoProduto;
@@ -31,7 +31,7 @@ public class ProdutoImagem {
         this.idProdutoImagemProduto = idProdutoImagemProduto;
     }
 
-    public ProdutoImagem(Integer idProduto, String nomeProduto, float precoProduto, String descricaoProduto, String categoriaProduto, int qntProduto, Integer idImagemProduto, String imagem1, Integer idProdutoImagemProduto) {
+    public MostraProdutoImagem(Integer idProduto, String nomeProduto, float precoProduto, String descricaoProduto, String categoriaProduto, int qntProduto, Integer idImagemProduto, String imagem1, Integer idProdutoImagemProduto) {
         this.idProduto = idProduto;
         this.nomeProduto = nomeProduto;
         this.precoProduto = precoProduto;

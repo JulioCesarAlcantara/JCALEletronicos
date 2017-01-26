@@ -61,11 +61,11 @@ public class ProdutoDAO implements DAO {
                     + " idImagemProduto, imagem1,ImagemProduto.idProdutoImagemProduto"
                     + " FROM Produto"
                     + "	INNER JOIN ImagemProduto"
-                    + " ON ImagemProduto.idProduto = Produto.idProduto");
+                    + " ON ImagemProduto.idProdutoImagemProduto = Produto.idProduto");
             rs = ps.executeQuery();
-            List<ProdutoImagem> lista = new ArrayList<ProdutoImagem>();
+            List<MostraProdutoImagem> lista = new ArrayList<MostraProdutoImagem>();
             while (rs.next()) {
-                lista.add(new ProdutoImagem(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9)));
+                lista.add(new MostraProdutoImagem(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9)));
             }
             return lista;
         } catch (SQLException e) {
@@ -87,7 +87,7 @@ public class ProdutoDAO implements DAO {
         PreparedStatement ps = null;
 
         if (pro == null) {
-            throw new Exception("O valor passado não pode ser nulo/ The value passed cannot be null");
+            throw new Exception("O valor passado não pode ser nulo.");
         }
 
         try {
@@ -102,9 +102,7 @@ public class ProdutoDAO implements DAO {
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new Exception(e);
-        } finally {
-            ConnectionDAO.closeConnection(conn, ps);
-        }
+        } 
     }
     
     public List buscaListaDeProdutosPesquisados(String str) throws Exception {
@@ -124,9 +122,9 @@ public class ProdutoDAO implements DAO {
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
-            List<ProdutoImagem> list = new ArrayList<ProdutoImagem>();
+            List<MostraProdutoImagem> list = new ArrayList<MostraProdutoImagem>();
             while (rs.next()) {
-                list.add(new ProdutoImagem(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9)));
+                list.add(new MostraProdutoImagem(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9)));
             }
             return list;
         } catch (SQLException e) {
@@ -154,7 +152,7 @@ public class ProdutoDAO implements DAO {
 
             List lista = new ArrayList();
             while (rs.next()) {
-                lista.add(new ProdutoImagem(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4),
+                lista.add(new MostraProdutoImagem(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4),
                         rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8),
                         rs.getString(9), rs.getString(10), rs.getInt(11)));
             }

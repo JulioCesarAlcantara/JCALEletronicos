@@ -78,23 +78,23 @@
                             <div class="row">
                                 <div class="col-sm-6 form-group">
                                     <label>Nome do produto</label>
-                                    <input type="text" placeholder="Entre com o nome aqui .." class="form-control" name="nome">
+                                    <input type="text" placeholder="Entre com o nome aqui .." required class="form-control" name="nome">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-sm-12">
                                     <label> Descrição</label>
-                                    <textarea placeholder="Entre com a descrição aqui.." rows="3" name="descricao" class="form-control"></textarea>
+                                    <textarea placeholder="Entre com a descrição aqui.." rows="3" required name="descricao" class="form-control"></textarea>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-4 form-group">
                                     <label>Preço</label>
-                                    <input type="text" placeholder="Entre com preço aqui.." class="form-control" name="praco">
+                                    <input type="number" placeholder="Entre com preço aqui.." required class="form-control" name="preco">
                                 </div>	                  	
                                 <div class="col-sm-4 form-group">
                                     <label>Categoria</label>
-                                    <select name="categoria" class="form-control selectpicker" >
+                                    <select name="categoria" required class="form-control selectpicker" >
                                         <option value="-1">Escolha a categoria do produto</option>
                                         <option value="ap">Aparelho</option>
                                         <option value="ac">Acessórios</option>
@@ -102,13 +102,13 @@
                                 </div>	
                                 <div class="col-sm-4 form-group">
                                     <label>Quantidade</label>
-                                    <input type="number" placeholder="Quantidade deste produto.." class="form-control" name="quantidade">
+                                    <input type="number" placeholder="Quantidade deste produto.." required class="form-control" name="quantidade">
                                 </div>
                             </div>	
                             <div class="row">
                                 <div class="col-sm-4 form-group">
                                     <label>1ª Imagem p/ Produto</label>
-                                    <input type="file" class="form-control" id="imagem1" onchange="convertImagemEmTexto1(this)">
+                                    <input type="file" class="form-control" id="imagem1" required onchange="convertImagemEmTexto1(this)">
                                 </div>	
                                 <div class="col-sm-4 form-group">
                                     <label>2ª Imagem p/ Produto</label>

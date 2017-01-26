@@ -1,3 +1,7 @@
+<%@page import="cdc.model.ProdutoDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="cdc.model.MostraProdutoImagem"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>  
@@ -25,7 +29,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active">
+                        <li>
                             <br><a href="TelaDeProdutos.jsp">Home</a>
                         </li>
                         <li>
@@ -45,10 +49,11 @@
                 </div>
                 <div class="row">
                     <div class="col-md-offset-3 col-md-6">
-                        <form role="form">
+                        <form action="pesqProduto" method="post">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Enter your email">
+                                    <input type="hidden" name="cmd" value="pesquisa"/>
+                                    <input type="text" class="form-control" placeholder="Pesquise por um produto aqui" name="pesquisaPalavra">
                                     <span class="input-group-btn">
                                         <a class="btn btn-success" type="submit">Go</a>
                                     </span>
@@ -59,41 +64,36 @@
                 </div>
             </div>
         </div>
+        
+        <% List<MostraProdutoImagem> lista = new ArrayList<MostraProdutoImagem>();
+            ProdutoDAO produto = new ProdutoDAO();
+            String pesquisa = request.getParameter("pesquisaPalavra");
+            out.print(pesquisa);
+            if (pesquisa != null) {
+                lista = produto.buscaListaDeProdutosPesquisados(pesquisa);
+            } else {
+                lista = produto.listaTodos();
+            }
+
+            if (lista.isEmpty()) {
+                response.sendRedirect("EmptyScreen.jsp");
+            }
+        %>
         <div class="section">
             <div class="container">
                 <div class="row">
+                    
+                    <% for(MostraProdutoImagem proList : lista){%>
+                    <form action="" method=""> 
                     <div class="col-md-3">
-                        <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
+                        <img src="<%out.print(proList.getImagem1());%>"
                              class="img-responsive">
-                        <h2>A title</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisici elit,
-                            <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
-                            <br>Ut enim ad minim veniam, quis nostrud</p>
+                        <h2><%out.print(proList.getNomeProduto());%></h2>
+                        <p><%out.print(proList.getDescricaoProduto());%></p>
+                        <input type="submit" value="Efetuar Comprar" class="btn btn-primary">
                     </div>
-                    <div class="col-md-3">
-                        <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
-                             class="img-responsive">
-                        <h2>A title</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisici elit,
-                            <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
-                            <br>Ut enim ad minim veniam, quis nostrud</p>
-                    </div>
-                    <div class="col-md-3">
-                        <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
-                             class="img-responsive img-rounded">
-                        <h2>A title</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisici elit,
-                            <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
-                            <br>Ut enim ad minim veniam, quis nostrud</p>
-                    </div>
-                    <div class="col-md-3">
-                        <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
-                             class="img-responsive">
-                        <h2>A title</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisici elit,
-                            <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
-                            <br>Ut enim ad minim veniam, quis nostrud</p>
-                    </div>
+                    </form>
+                    <%}%>
                 </div>
             </div>
         </div>
