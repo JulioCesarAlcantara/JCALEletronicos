@@ -141,7 +141,7 @@ public class ClienteDAO implements DAO {
 
         try {
             String query = "INSERT INTO Usuario (nomeUsuario, emailUsuario, telefoneUsuario, "
-                    + "dataNascimentoUsuario, sexoUsuario, tipoUsuario,  passwordUsuario, "
+                    + "dataNascimentoUsuario, sexoUsuario, tipoUsuario,  senhaUsuario, "
                     + "cpfUsuario, enderecoUsuario, cepUsuario, cidadeUsuario, estadoUsuario) "
                     + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
             ps = conn.prepareStatement(query);
