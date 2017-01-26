@@ -187,5 +187,31 @@ public class ProdutoDAO implements DAO {
             ConnectionDAO.closeConnection(conn, ps, rs);
         }
     }
+    
+    public int buscaIdDoProdutoPeloNome(String str) throws Exception {
+        ResultSet rs = null;
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        try {
+            String sql = "SELECT idProduto FROM Produto WHERE nomeProduto= '" + str + "'";
+
+            conn = this.conn;
+            ps = conn.prepareStatement(sql);
+
+            rs = (ResultSet) ps.executeQuery();
+            int id = 0;
+
+            while (rs.next()) {
+                id = rs.getInt(1);
+            }
+            return id;
+        } catch (SQLException e) {
+            throw new Exception(e);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps);
+        }
+    }
+    
 
 }
