@@ -43,7 +43,8 @@
             <h1 class="well">Cadastro de Usuários</h1>
             <div class="col-lg-12 well">
                 <div class="row">
-                    <form>
+                    <form class="form-signin" action="usuarios" method="post">
+                        <input type="hidden" name="cmd" value="saveAdd"/>
                         <div class="col-sm-12">
                             <div class="row">
                                 <div class="col-sm-6 form-group">
@@ -68,7 +69,7 @@
                             <div class="row">
                                 <div class="col-sm-4 form-group">
                                     <label>Data de Nascimento</label>
-                                    <input type="date" class="form-control">
+                                    <input type="text" class="form-control" placeholder="Entre com a Data de Nascimento" name="dataNascimentoUsuario">
                                 </div>		
                                 <div class="col-sm-4 form-group">
                                     <label>Sexo</label>
@@ -78,8 +79,6 @@
                                         <option value="f" >Feminino</option>
                                     </select>
                                 </div>	
-                            </div>
-                            <div class="row">
                                 <div class="col-sm-4 form-group">
                                     <label>Tipo de Usuário</label>
                                     <select name="tipoUsuario" class="form-control selectpicker" >
@@ -89,7 +88,10 @@
                                         <option value="e" >Encarregado</option>
                                         <option value="v" >Vendedor</option>
                                     </select>
-                                </div>	
+                                </div>
+                            </div>
+                            <div class="row">
+
                                 <div class="col-sm-4 form-group">
                                     <label>Defina uma Senha</label>
                                     <input type="password" placeholder="Entre com sua nova senha aqui.." class="form-control" name="senhaUsuario">

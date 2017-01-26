@@ -5,8 +5,8 @@
         <servlet-class>cdc.controller.ServletCadastroDeProdutos</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ServletUsuarios</servlet-name>
-        <servlet-class>cdc.controller.ServletClientes</servlet-class>
+        <servlet-name>usuarios</servlet-name>
+        <servlet-class>cdc.controller.ServletUsuarios</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>clientes</servlet-name>
@@ -17,8 +17,8 @@
         <url-pattern>/cadPro</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ServletUsuarios</servlet-name>
-        <url-pattern>/ServletUsuarios</url-pattern>
+        <servlet-name>usuarios</servlet-name>
+        <url-pattern>/usuarios</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>clientes</servlet-name>

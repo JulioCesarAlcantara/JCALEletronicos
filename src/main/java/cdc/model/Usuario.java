@@ -13,16 +13,11 @@ public class Usuario {
     private String sexo; 
     private String tipo; 
     private String senha; 
-    private String cpf; 
-    private String endereco; 
-    private String cep; 
-    private String cidade; 
-    private String estado;
 
     public Usuario() {
     }
 
-    public Usuario(String nome, String email, String telefone, Date dataNascimento, String sexo, String tipo, String senha, String cpf, String endereco, String cep, String cidade, String estado) {
+    public Usuario(String nome, String email, String telefone, Date dataNascimento, String sexo, String tipo, String senha) {
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
@@ -30,11 +25,6 @@ public class Usuario {
         this.sexo = sexo;
         this.tipo = tipo;
         this.senha = senha;
-        this.cpf = cpf;
-        this.endereco = endereco;
-        this.cep = cep;
-        this.cidade = cidade;
-        this.estado = estado;
     }
 
     public Integer getId() {
@@ -99,46 +89,6 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    public String getCep() {
-        return cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
     }
     
     

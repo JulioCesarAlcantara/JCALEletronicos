@@ -52,9 +52,8 @@ public class UsuarioDAO implements DAO {
 
         try {
             String sql = "INSERT INTO Usuario (nomeUsuario, emailUsuario, telefoneUsuario, "
-                    + "dataNascimentoUsuario, sexoUsuario, tipoUsuario,  passwordUsuario, "
-                    + "cpfUsuario, enderecoUsuario, cepUsuario, cidadeUsuario, estadoUsuario) "
-                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+                    + "dataNascimentoUsuario, sexoUsuario, tipoUsuario,  senhaUsuario) "
+                    + "VALUES (?,?,?,?,?,?,?)";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             ps.setString(1, usua.getNome());
@@ -64,11 +63,6 @@ public class UsuarioDAO implements DAO {
             ps.setString(5, usua.getSexo());
             ps.setString(6, usua.getTipo());
             ps.setString(7, usua.getSenha());
-            ps.setString(8, usua.getCpf());
-            ps.setString(9, usua.getEndereco());
-            ps.setString(10, usua.getCep());
-            ps.setString(11, usua.getCidade());
-            ps.setString(12, usua.getEstado());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new Exception(e);
