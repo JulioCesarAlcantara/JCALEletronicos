@@ -44,13 +44,14 @@
                 <div class="col-sm-6 col-md-3 col-md-offset-4">
                     <h1 class="text-center login-title">Sign in</h1><br>
                     <div class="account-wall">
-                        <form class="form-signin">
-                            <input type="text" class="form-control" placeholder="Email" required autofocus><br>
-                            <input type="password" class="form-control" placeholder="Senha" required><br>
+                        <form action="login" method="post" class="form-signin">
+                            <input type="hidden" name="cmd" value="login"/>
+                            <input type="text" class="form-control" placeholder="Email" name="userEmail" required autofocus><br>
+                            <input type="password" class="form-control" placeholder="Senha" name="userPassword" required><br>
                             <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button><br>                           
                         </form>
                     </div>
-                    <a href="#" class="text-center new-account">Criar conta agora .. </a>
+                    <a href="CadastroClientes.jsp" class="text-center new-account">Criar conta agora .. </a>
                 </div>
             </div>
         </div>

@@ -87,7 +87,7 @@ public class UsuarioDAO implements DAO {
         ResultSet rs = null;
 
         try {
-            String sql = "SELECT tipoUsuario FROM Usuario WHERE emailUsuario = ? AND passwordUsuario = ?";
+            String sql = "SELECT tipoUsuario FROM Usuario WHERE emailUsuario = ? AND senhaUsuario = ?";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
 
