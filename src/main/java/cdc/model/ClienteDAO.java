@@ -59,7 +59,7 @@ public class ClienteDAO implements DAO {
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            throw new Exception("Erro ao inserir dados do cliente: " + e);
+            throw new Exception("Erro ao atualizar dados do cliente: " + e);
         } finally {
             ConnectionDAO.closeConnection(conn, ps);
         }
