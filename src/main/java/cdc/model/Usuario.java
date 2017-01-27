@@ -6,7 +6,8 @@ import java.sql.Date;
 public class Usuario {
     
     private Integer id; 
-    private String nome; 
+    private String primeiroNome; 
+    private String segundoNome; 
     private String email; 
     private String telefone; 
     private Date dataNascimento; 
@@ -17,8 +18,21 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nome, String email, String telefone, Date dataNascimento, String sexo, String tipo, String senha) {
-        this.nome = nome;
+    public Usuario(Integer id, String primeiroNome, String segundoNome, String email, String telefone, Date dataNascimento, String sexo, String tipo, String senha) {
+        this.id = id;
+        this.primeiroNome = primeiroNome;
+        this.segundoNome = segundoNome;
+        this.email = email;
+        this.telefone = telefone;
+        this.dataNascimento = dataNascimento;
+        this.sexo = sexo;
+        this.tipo = tipo;
+        this.senha = senha;
+    }
+
+    public Usuario(String primeiroNome, String segundoNome, String email, String telefone, Date dataNascimento, String sexo, String tipo, String senha) {
+        this.primeiroNome = primeiroNome;
+        this.segundoNome = segundoNome;
         this.email = email;
         this.telefone = telefone;
         this.dataNascimento = dataNascimento;
@@ -35,12 +49,20 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getPrimeiroNome() {
+        return primeiroNome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setPrimeiroNome(String primeiroNome) {
+        this.primeiroNome = primeiroNome;
+    }
+
+    public String getSegundoNome() {
+        return segundoNome;
+    }
+
+    public void setSegundoNome(String segundoNome) {
+        this.segundoNome = segundoNome;
     }
 
     public String getEmail() {
@@ -90,7 +112,7 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
+
     
     
     
