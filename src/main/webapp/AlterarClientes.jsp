@@ -76,7 +76,7 @@
                                 </div>		
                                 <div class="col-sm-4 form-group">
                                      <label>Sexo</label>
-                                    <select name="sexoUsuario" class="form-control selectpicker" >
+                                    <select name="sexoCliente" class="form-control selectpicker" >
                                         <c:if test="${listaClientes.get(0).sexoCliente eq 'm'}" >                                      
                                             <option value="m" selected>Masculino</option>
                                             <option value="f" >Feminino</option>
@@ -85,6 +85,8 @@
                                             <option value="m" >Masculino</option>
                                             <option value="f" selected>Feminino</option>
                                         </c:if> 
+                                            
+                                            
                                     </select>
                                 </div>	
                                 <div class="col-sm-4 form-group">
