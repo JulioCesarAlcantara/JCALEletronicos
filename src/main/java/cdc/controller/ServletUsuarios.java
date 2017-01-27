@@ -62,7 +62,7 @@ public class ServletUsuarios extends HttpServlet {
 
                 Usuario usuario = new Usuario(primeiroNomeUsuario, segundoNomeUsuario, emailUsuario, telefoneUsuario, data, sexoUsuario, tipoUsuario, senhaUsuario);
                 dao.salvar(usuario);
-                //getServletContext().getRequestDispatcher("/TelaPrincipal.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/usuarios?cmd=listar").forward(request, response);
             } else if (cmd.equalsIgnoreCase("listar")){
                 List listaUsuarios = dao.listaTodos();
                 request.setAttribute("listaUsuarios", listaUsuarios); 

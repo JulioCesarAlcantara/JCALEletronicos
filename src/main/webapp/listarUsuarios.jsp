@@ -49,26 +49,26 @@
                 <div class="row">
                     <table>
                         <tr>
-                            <th><h4> ID - Atualizar </h4></th>
-                            <th><h4> Nome </h4></th>
-                            <th><h4> Tipo </h4></th>
-                            <th><h4> Excluir </h4></th>
+                            <th><h4> ID - Atualizar&nbsp; </h4></th>
+                            <th><h4> Nome&nbsp; </h4></th>
+                            <th><h4> Tipo&nbsp; </h4></th>
+                            <th><h4> Excluir&nbsp; </h4></th>
                         </tr>
                         <c:forEach var="lista" items="${ requestScope.listaUsuarios }">
                             <tr>
-                                <td><a href="usuarios?cmd=update&id=${lista.id}"> ${lista.id} </a></td>
-                                <td>${lista.primeiroNome} ${lista.segundoNome}</td>
+                                <td><a href="usuarios?cmd=update&id=${lista.id}"> ${lista.id} &nbsp;</a></td>
+                                <td>${lista.primeiroNome} ${lista.segundoNome}&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <c:if test="${lista.tipo eq 'v'}">
-                                    <td>Vendedor</td>
+                                    <td>Vendedor&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 </c:if>
                                 <c:if test="${lista.tipo eq 'a'}">
-                                    <td>Administrador</td>
+                                    <td>Administrador&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 </c:if>
                                 <c:if test="${lista.tipo eq 'g'}">
-                                    <td>Gerente</td>
+                                    <td>Gerente&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 </c:if>
                                 <c:if test="${lista.tipo eq 'e'}">
-                                    <td>Encarregado</td>
+                                    <td>Encarregado&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 </c:if>
 
                                 <td><a href="usuarios?cmd=del&id=${lista.id}"> Excluir</a></td>
