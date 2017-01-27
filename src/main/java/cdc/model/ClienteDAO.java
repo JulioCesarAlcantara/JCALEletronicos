@@ -37,21 +37,22 @@ public class ClienteDAO implements DAO {
         }
 
         try {
-            String query = "UPDATE Usuario set nomeUsuario=?, emailUsuario=?, telefoneUsuario=?,  "
+            String query = "UPDATE Usuario set primeiroNomeUsuario=?, segundoNomeUsuario=?, emailUsuario=?, telefoneUsuario=?,  "
                     + "dataNascimentoUsuario=?, sexoUsuario=?, tipoUsuario=?, senhaUsuario=?, "
                     + "cpfUsuario=?, enderecoUsuario=?, cepUsuario=?,  cidadeUsuario=?, estadoUsuario=? WHERE idUsuario = ?";
             ps = conn.prepareStatement(query);
 
-            ps.setString(1, cliente.getNomeCliente());
-            ps.setString(2, cliente.getEmailCliente());
-            ps.setString(3, cliente.getTelefoneCliente());
-            ps.setDate(4, cliente.getDataNascimentoCliente());
-            ps.setString(5, cliente.getSexoCliente());
-            ps.setString(6, "c");
-            ps.setString(7, cliente.getSenhaCliente());
-            ps.setString(8, cliente.getCpfCliente());
-            ps.setString(9, cliente.getEnderecoCliente());
-            ps.setString(10, cliente.getCepCliente());
+            ps.setString(1, cliente.getPrimeiroNomeCliente());
+            ps.setString(2, cliente.getSegundoNomeCliente());
+            ps.setString(3, cliente.getEmailCliente());
+            ps.setString(4, cliente.getTelefoneCliente());
+            ps.setDate(5, cliente.getDataNascimentoCliente());
+            ps.setString(6, cliente.getSexoCliente());
+            ps.setString(7, "c");
+            ps.setString(8, cliente.getSenhaCliente());
+            ps.setString(9, cliente.getCpfCliente());
+            ps.setString(10, cliente.getEnderecoCliente());
+            ps.setString(11, cliente.getCepCliente());
             ps.setString(12, cliente.getCidadeCliente());
             ps.setString(13, cliente.getEstadoCliente());
             ps.setInt(14, cliente.getIdCliente());
@@ -102,19 +103,20 @@ public class ClienteDAO implements DAO {
 
             while (rs.next()) {
                 Integer idCliente = rs.getInt(1);
-                String nomeCliente = rs.getString(2);
-                String email = rs.getString(3);
-                String telefone = rs.getString(4);
-                Date dataNascimento = rs.getDate(5);
-                String sexo = rs.getString(6);
-                String tipo = rs.getString(7);
-                String senha = rs.getString(8);
-                String cpf = rs.getString(9);
-                String endereco = rs.getString(10);
-                String cep = rs.getString(11);
-                String cidade = rs.getString(12);
-                String estado = rs.getString(13);
-                lista.add(new Cliente(idCliente, nomeCliente, email, telefone, dataNascimento, sexo, tipo, senha, cpf, endereco, cep, cidade, estado));
+                String primeiroNomeCliente = rs.getString(2);
+                String segundoNomeCliente = rs.getString(3);
+                String email = rs.getString(4);
+                String telefone = rs.getString(5);
+                Date dataNascimento = rs.getDate(6);
+                String sexo = rs.getString(7);
+                String tipo = rs.getString(8);
+                String senha = rs.getString(9);
+                String cpf = rs.getString(10);
+                String endereco = rs.getString(11);
+                String cep = rs.getString(12);
+                String cidade = rs.getString(13);
+                String estado = rs.getString(14);
+                lista.add(new Cliente(idCliente, primeiroNomeCliente, segundoNomeCliente, email, telefone, dataNascimento, sexo, tipo, senha, cpf, endereco, cep, cidade, estado));
             }
             return lista;
         } catch (SQLException sqle) {
@@ -126,7 +128,41 @@ public class ClienteDAO implements DAO {
 
     @Override
     public List procura(Object ob) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        Cliente cli = (Cliente) ob;
+
+        try {
+            conn = this.conn;
+            ps = conn.prepareStatement("SELECT * FROM Usuario WHERE idUsuario = ?");
+            ps.setInt(1, cli.getIdCliente());
+            rs = ps.executeQuery();
+            List<Cliente> lista = new ArrayList<Cliente>();
+
+            while (rs.next()) {
+                Integer idCliente = rs.getInt(1);
+                String primeiroNomeCliente = rs.getString(2);
+                String segundoNomeCliente = rs.getString(3);
+                String email = rs.getString(4);
+                String telefone = rs.getString(5);
+                Date dataNascimento = rs.getDate(6);
+                String sexo = rs.getString(7);
+                String tipo = rs.getString(8);
+                String senha = rs.getString(9);
+                String cpf = rs.getString(10);
+                String endereco = rs.getString(11);
+                String cep = rs.getString(12);
+                String cidade = rs.getString(13);
+                String estado = rs.getString(14);
+                lista.add(new Cliente(idCliente, primeiroNomeCliente, segundoNomeCliente, email, telefone, dataNascimento, sexo, tipo, senha, cpf, endereco, cep, cidade, estado));
+            }
+            return lista;
+        } catch (SQLException sqle) {
+            throw new Exception(sqle);
+        } finally {
+            ConnectionDAO.close(conn, ps, rs);
+        }
     }
 
     @Override
@@ -140,25 +176,28 @@ public class ClienteDAO implements DAO {
         }
 
         try {
-            String query = "INSERT INTO Usuario (nomeUsuario, emailUsuario, telefoneUsuario, "
+            String query = "INSERT INTO Usuario (primeiroNomeUsuario, segundoNomeUsuario, emailUsuario, telefoneUsuario, "
                     + "dataNascimentoUsuario, sexoUsuario, tipoUsuario,  senhaUsuario, "
                     + "cpfUsuario, enderecoUsuario, cepUsuario, cidadeUsuario, estadoUsuario) "
-                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
             ps = conn.prepareStatement(query);
 
-            ps.setString(1, cli.getNomeCliente());
-            ps.setString(2, cli.getEmailCliente());
-            ps.setString(3, cli.getTelefoneCliente());
-            ps.setDate(4, cli.getDataNascimentoCliente());
-            ps.setString(5, cli.getSexoCliente());
-            ps.setString(6, cli.getTipoCliente());
-            ps.setString(7, cli.getSenhaCliente());
-            ps.setString(8, cli.getCpfCliente());
-            ps.setString(9, cli.getEnderecoCliente());
-            ps.setString(10, cli.getCepCliente());
-            ps.setString(11, cli.getCidadeCliente());
-            ps.setString(12, cli.getEstadoCliente());
+            ps.setString(1, cli.getPrimeiroNomeCliente());
+            ps.setString(2, cli.getSegundoNomeCliente());
+            ps.setString(3, cli.getEmailCliente());
+            ps.setString(4, cli.getTelefoneCliente());
+            ps.setDate(5, cli.getDataNascimentoCliente());
+            ps.setString(6, cli.getSexoCliente());
+            ps.setString(7, cli.getTipoCliente());
+            ps.setString(8, cli.getSenhaCliente());
+            ps.setString(9, cli.getCpfCliente());
+            ps.setString(10, cli.getEnderecoCliente());
+            ps.setString(11, cli.getCepCliente());
+            ps.setString(12, cli.getCidadeCliente());
+            ps.setString(13, cli.getEstadoCliente());
             ps.executeUpdate();
+            
+            System.out.println(ps);
 
         } catch (SQLException e) {
             throw new Exception("Erro ao inserir Cliente: " + e);

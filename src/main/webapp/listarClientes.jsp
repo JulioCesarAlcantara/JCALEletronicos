@@ -33,7 +33,7 @@
                             <br><a href="TelaDeProdutos.jsp">Home</a>
                         </li>
                         <li>
-                            <br><a href="CadastroUsuarios.jsp">Novo Usuario</a>
+                            <br><a href="CadastroClientes.jsp">Novo Cliente</a>
                         </li>
                         <li>
                             <br><a href="#">Contacts</a>
@@ -51,27 +51,13 @@
                         <tr>
                             <th><h4> ID - Atualizar&nbsp; </h4></th>
                             <th><h4> Nome&nbsp; </h4></th>
-                            <th><h4> Tipo&nbsp; </h4></th>
                             <th><h4> Excluir&nbsp; </h4></th>
                         </tr>
-                        <c:forEach var="lista" items="${ requestScope.listaUsuarios }">
+                        <c:forEach var="lista" items="${ requestScope.listaClientes }">
                             <tr>
-                                <td><a href="usuarios?cmd=update&id=${lista.id}"> ${lista.id} &nbsp;</a></td>
-                                <td>${lista.primeiroNome} ${lista.segundoNome}&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                <c:if test="${lista.tipo eq 'v'}">
-                                    <td>Vendedor&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                </c:if>
-                                <c:if test="${lista.tipo eq 'a'}">
-                                    <td>Administrador&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                </c:if>
-                                <c:if test="${lista.tipo eq 'g'}">
-                                    <td>Gerente&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                </c:if>
-                                <c:if test="${lista.tipo eq 'e'}">
-                                    <td>Encarregado&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                </c:if>
-
-                                <td><a href="usuarios?cmd=del&id=${lista.id}"> Excluir</a></td>
+                                <td><a href="clientes?cmd=update&id=${lista.idCliente}"> ${lista.idCliente} &nbsp;</a></td>
+                                <td>${lista.primeiroNomeCliente} ${lista.segundoNomeCliente}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td><a href="clientes?cmd=del&id=${lista.idCliente}"> Excluir</a></td>
                             </c:forEach>
                     </table>
 

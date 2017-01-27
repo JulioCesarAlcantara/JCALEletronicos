@@ -10,6 +10,7 @@ import cdc.model.ClienteDAO;
 import cdc.util.DAO;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -50,9 +51,53 @@ public class ServletClientes extends HttpServlet {
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
                 java.sql.Date data = new java.sql.Date(format.parse(dataNascimentoCliente).getTime());
 
-                Cliente cliente = new Cliente(primeiroNomeCliente+" "+segundoNomeCliente, emailCliente, telefoneCliente, data, sexoCliente,"c", senhaCliente, cpfCliente, enderecoCliente, cepCliente, cidadeCliente, estadoCliente);
+                Cliente cliente = new Cliente(primeiroNomeCliente, segundoNomeCliente, emailCliente, telefoneCliente, data, sexoCliente,"c", senhaCliente, cpfCliente, enderecoCliente, cepCliente, cidadeCliente, estadoCliente);
                 dao.salvar(cliente);
                 getServletContext().getRequestDispatcher("/LoginDeUsuarios.jsp").forward(request, response);
+            }else if (cmd.equalsIgnoreCase("listar")) {
+                List listaClientes = dao.listaTodos();
+                request.setAttribute("listaClientes", listaClientes); 
+                //setando o despachador
+                getServletContext().getRequestDispatcher("/listarClientes.jsp").forward(request, response);
+
+            } else if (cmd.equalsIgnoreCase("update")) {
+                Integer idCliente = Integer.parseInt(request.getParameter("id"));
+                Cliente cliente = new Cliente();
+                cliente.setIdCliente(idCliente);
+                List listaClientes = dao.procura(cliente);
+                request.setAttribute("listaClientes", listaClientes);
+                getServletContext().getRequestDispatcher("/AlterarClientes.jsp").forward(request, response);
+
+            } else if (cmd.equalsIgnoreCase("saveUpdate")) {
+                Integer idCliente = Integer.parseInt(request.getParameter("idCliente"));
+               String primeiroNomeCliente = request.getParameter("primeiroNomeCliente");
+                String segundoNomeCliente = request.getParameter("segundoNomeCliente");
+                String telefoneCliente = request.getParameter("telefoneCliente");
+                String emailCliente = request.getParameter("emailCliente");
+                String dataNascimentoCliente = request.getParameter("dataNascimentoCliente");
+                String sexoCliente = request.getParameter("sexoCliente");
+                String senhaCliente = request.getParameter("senhaCliente");
+                String enderecoCliente = request.getParameter("enderecoCliente");
+                String cidadeCliente = request.getParameter("cidadeCliente");
+                String estadoCliente = request.getParameter("estadoCliente");
+                String cepCliente = request.getParameter("cepCliente");
+                String cpfCliente = request.getParameter("cpfCliente");
+
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                java.sql.Date data = new java.sql.Date(format.parse(dataNascimentoCliente).getTime());
+
+                Cliente cliente = new Cliente(idCliente, primeiroNomeCliente, segundoNomeCliente, emailCliente, telefoneCliente, data, sexoCliente,"c", senhaCliente, cpfCliente, enderecoCliente, cepCliente, cidadeCliente, estadoCliente);
+                dao.atualizar(cliente);
+                getServletContext().getRequestDispatcher("/clientes?cmd=listar").forward(request, response);
+
+            } else if (cmd.equalsIgnoreCase("add")) {
+                getServletContext().getRequestDispatcher("/CadastroClientes.jsp").forward(request, response);
+            } else if (cmd.equalsIgnoreCase("del")) {
+                Integer id = Integer.parseInt(request.getParameter("id"));
+                Cliente cliente = new Cliente();
+                cliente.setIdCliente(id);
+                dao.excluir(cliente);
+                getServletContext().getRequestDispatcher("/clientes?cmd=listar").forward(request, response);
             } 
         } catch (Exception e) {
             e.printStackTrace();
