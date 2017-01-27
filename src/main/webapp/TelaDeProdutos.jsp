@@ -64,11 +64,11 @@
                 </div>
             </div>
         </div>
-        
+
         <% List<MostraProdutoImagem> lista = new ArrayList<MostraProdutoImagem>();
             ProdutoDAO produto = new ProdutoDAO();
             String pesquisa = request.getParameter("pesquisaPalavra");
-            out.print(pesquisa);
+            //Implementar a pesquisa.
             if (pesquisa != null) {
                 lista = produto.buscaListaDeProdutosPesquisados(pesquisa);
             } else {
@@ -82,16 +82,16 @@
         <div class="section">
             <div class="container">
                 <div class="row">
-                    
-                    <% for(MostraProdutoImagem proList : lista){%>
-                    <form action="" method=""> 
-                    <div class="col-md-3">
-                        <img src="<%out.print(proList.getImagem1());%>"
-                             class="img-responsive">
-                        <h2><%out.print(proList.getNomeProduto());%></h2>
-                        <p><%out.print(proList.getDescricaoProduto());%></p>
-                        <input type="submit" value="Efetuar Comprar" class="btn btn-primary">
-                    </div>
+                    <% for (MostraProdutoImagem proList : lista) {%>
+                    <form action="MontaCarrinho" method="get"> 
+                        <input type="hidden" name="idProduto" value="<%out.print(proList.getIdProduto());%>"/>      
+                        <div class="col-md-3">
+                            <img src="<%out.print(proList.getImagem1());%>"
+                                 class="img-responsive">
+                            <h2><%out.print(proList.getNomeProduto());%></h2>
+                            <p><%out.print(proList.getDescricaoProduto());%></p>
+                            <input type="submit" value="Efetuar Comprar" class="btn btn-primary">
+                        </div>
                     </form>
                     <%}%>
                 </div>
