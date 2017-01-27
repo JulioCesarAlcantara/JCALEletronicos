@@ -9,7 +9,8 @@ import java.sql.Date;
 public class Cliente {
 
     private Integer idCliente;
-    private String nomeCliente;
+    private String primeiroNomeCliente;
+    private String segundoNomeCliente;
     private String emailCliente;
     private String telefoneCliente;
     private Date dataNascimentoCliente;
@@ -25,13 +26,10 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(Integer id) {
-        this.idCliente = id;
-    }
-
-    public Cliente(Integer idCliente, String nomeCliente, String emailCliente, String telefoneCliente, Date dataNascimentoCliente, String sexoCliente, String tipoCliente, String senhaCliente, String cpfCliente, String enderecoCliente, String cepCliente, String cidadeCliente, String estadoCliente) {
+    public Cliente(Integer idCliente, String primeiroNomeCliente, String segundoNomeCliente, String emailCliente, String telefoneCliente, Date dataNascimentoCliente, String sexoCliente, String tipoCliente, String senhaCliente, String cpfCliente, String enderecoCliente, String cepCliente, String cidadeCliente, String estadoCliente) {
         this.idCliente = idCliente;
-        this.nomeCliente = nomeCliente;
+        this.primeiroNomeCliente = primeiroNomeCliente;
+        this.segundoNomeCliente = segundoNomeCliente;
         this.emailCliente = emailCliente;
         this.telefoneCliente = telefoneCliente;
         this.dataNascimentoCliente = dataNascimentoCliente;
@@ -45,8 +43,9 @@ public class Cliente {
         this.estadoCliente = estadoCliente;
     }
 
-    public Cliente(String nomeCliente, String emailCliente, String telefoneCliente, Date dataNascimentoCliente, String sexoCliente, String tipoCliente, String senhaCliente, String cpfCliente, String enderecoCliente, String cepCliente, String cidadeCliente, String estadoCliente) {
-        this.nomeCliente = nomeCliente;
+    public Cliente(String primeiroNomeCliente, String segundoNomeCliente, String emailCliente, String telefoneCliente, Date dataNascimentoCliente, String sexoCliente, String tipoCliente, String senhaCliente, String cpfCliente, String enderecoCliente, String cepCliente, String cidadeCliente, String estadoCliente) {
+        this.primeiroNomeCliente = primeiroNomeCliente;
+        this.segundoNomeCliente = segundoNomeCliente;
         this.emailCliente = emailCliente;
         this.telefoneCliente = telefoneCliente;
         this.dataNascimentoCliente = dataNascimentoCliente;
@@ -68,12 +67,20 @@ public class Cliente {
         this.idCliente = idCliente;
     }
 
-    public String getNomeCliente() {
-        return nomeCliente;
+    public String getPrimeiroNomeCliente() {
+        return primeiroNomeCliente;
     }
 
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
+    public void setPrimeiroNomeCliente(String primeiroNomeCliente) {
+        this.primeiroNomeCliente = primeiroNomeCliente;
+    }
+
+    public String getSegundoNomeCliente() {
+        return segundoNomeCliente;
+    }
+
+    public void setSegundoNomeCliente(String segundoNomeCliente) {
+        this.segundoNomeCliente = segundoNomeCliente;
     }
 
     public String getEmailCliente() {
@@ -163,6 +170,8 @@ public class Cliente {
     public void setEstadoCliente(String estadoCliente) {
         this.estadoCliente = estadoCliente;
     }
+
+    
     
     
 }
