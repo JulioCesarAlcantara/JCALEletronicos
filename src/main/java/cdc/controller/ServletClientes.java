@@ -26,14 +26,13 @@ public class ServletClientes extends HttpServlet {
         DAO dao;
 
         request.setAttribute("adminEmail", getServletConfig().getInitParameter("adminEmail"));
-        //stando o valor default do cmd
+        //setando o valor default do cmd
         if (cmd == null) {
             cmd = "principal";
         }
 
         try {
             dao = new ClienteDAO();
-            RequestDispatcher rd = null; 
             if (cmd.equalsIgnoreCase("saveAdd")) {
                 String primeiroNomeCliente = request.getParameter("primeiroNomeCliente");
                 String segundoNomeCliente = request.getParameter("segundoNomeCliente");
@@ -53,10 +52,8 @@ public class ServletClientes extends HttpServlet {
 
                 Cliente cliente = new Cliente(primeiroNomeCliente+" "+segundoNomeCliente, emailCliente, telefoneCliente, data, sexoCliente,"c", senhaCliente, cpfCliente, enderecoCliente, cepCliente, cidadeCliente, estadoCliente);
                 dao.salvar(cliente);
-                //getServletContext().getRequestDispatcher("/TelaPrincipal.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/LoginDeUsuarios.jsp").forward(request, response);
             } 
-            
-
         } catch (Exception e) {
             e.printStackTrace();
             throw new ServletException(e);
