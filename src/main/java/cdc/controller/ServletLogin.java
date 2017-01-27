@@ -5,55 +5,62 @@
  */
 package cdc.controller;
 
-import cdc.model.Cliente;
-import cdc.model.ClienteDAO;
+import cdc.model.UsuarioDAO;
 import cdc.util.DAO;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-
-public class ServletClientes extends HttpServlet {
+/**
+ *
+ * @author cesar
+ */
+public class ServletLogin extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String cmd = request.getParameter("cmd");
+                String cmd = request.getParameter("cmd");
         DAO dao;
-
         request.setAttribute("adminEmail", getServletConfig().getInitParameter("adminEmail"));
-        //setando o valor default do cmd
+
         if (cmd == null) {
             cmd = "principal";
         }
 
         try {
-            dao = new ClienteDAO();
-            if (cmd.equalsIgnoreCase("saveAdd")) {
-                String primeiroNomeCliente = request.getParameter("primeiroNomeCliente");
-                String segundoNomeCliente = request.getParameter("segundoNomeCliente");
-                String telefoneCliente = request.getParameter("telefoneCliente");
-                String emailCliente = request.getParameter("emailCliente");
-                String dataNascimentoCliente = request.getParameter("dataNascimentoCliente");
-                String sexoCliente = request.getParameter("sexoCliente");
-                String senhaCliente = request.getParameter("senhaCliente");
-                String enderecoCliente = request.getParameter("enderecoCliente");
-                String cidadeCliente = request.getParameter("cidadeCliente");
-                String estadoCliente = request.getParameter("estadoCliente");
-                String cepCliente = request.getParameter("cepCliente");
-                String cpfCliente = request.getParameter("cpfCliente");
+            UsuarioDAO usu = new UsuarioDAO();
+            RequestDispatcher rd = null;
+            if (cmd.equalsIgnoreCase("login")) {
+                
+                String email = request.getParameter("userEmail");
+                String senha = request.getParameter("userPassword");
+                boolean resultado = usu.verificaLoginUsuario(email, senha);
 
-                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-                java.sql.Date data = new java.sql.Date(format.parse(dataNascimentoCliente).getTime());
+                if (resultado) {
+                    HttpSession session = request.getSession();
+                    //Determinando o tempo da sessão;
+                    session.setMaxInactiveInterval(180);
+                    
+                    UsuarioDAO usuario = new UsuarioDAO();
+                    String idLoginUsuario = Integer.toString(usuario.buscaIdUsuarioPeloLogin(email));
 
-                Cliente cliente = new Cliente(primeiroNomeCliente+" "+segundoNomeCliente, emailCliente, telefoneCliente, data, sexoCliente,"c", senhaCliente, cpfCliente, enderecoCliente, cepCliente, cidadeCliente, estadoCliente);
-                dao.salvar(cliente);
-                getServletContext().getRequestDispatcher("/LoginDeUsuarios.jsp").forward(request, response);
-            } 
+                    session.setAttribute("idLoginUsuario", idLoginUsuario);
+
+                    rd = request.getRequestDispatcher("/TelaDeProdutos.jsp");
+
+                } else {
+                    getServletContext().getRequestDispatcher("/CadastroClientes.jsp").forward(request, response);
+                }
+                getServletContext().getRequestDispatcher("/TelaDeProdutos.jsp").forward(request, response);
+
+            } else {
+                rd = request.getRequestDispatcher("/index.html");
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
             throw new ServletException(e);
