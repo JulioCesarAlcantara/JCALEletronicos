@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cdc.controller;
 
 import cdc.model.UsuarioDAO;
@@ -15,22 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author cesar
- */
 public class ServletLogin extends HttpServlet {
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                String cmd = request.getParameter("cmd");
+        String cmd = request.getParameter("cmd");
         DAO dao;
         request.setAttribute("adminEmail", getServletConfig().getInitParameter("adminEmail"));
-
+        
         if (cmd == null) {
             cmd = "principal";
         }
-
+        
         try {
             UsuarioDAO usu = new UsuarioDAO();
             RequestDispatcher rd = null;
@@ -39,7 +30,7 @@ public class ServletLogin extends HttpServlet {
                 String email = request.getParameter("userEmail");
                 String senha = request.getParameter("userPassword");
                 boolean resultado = usu.verificaLoginUsuario(email, senha);
-
+                
                 if (resultado) {
                     HttpSession session = request.getSession();
                     //Determinando o tempo da sessão;
@@ -47,20 +38,19 @@ public class ServletLogin extends HttpServlet {
                     
                     UsuarioDAO usuario = new UsuarioDAO();
                     String idLoginUsuario = Integer.toString(usuario.buscaIdUsuarioPeloLogin(email));
-
                     session.setAttribute("idLoginUsuario", idLoginUsuario);
-
-                    rd = request.getRequestDispatcher("/TelaDeProdutos.jsp");
-
+                    String  usuarioTipo = usuario.buscaTipoDoUsuarioPeloId(idLoginUsuario);  
+                    if (usuarioTipo != null) {
+                        session.setAttribute("usuarioTipo", usuarioTipo);
+                    }
+                   getServletContext().getRequestDispatcher("/TelaDeProdutos.jsp").forward(request, response);
+                    
                 } else {
                     getServletContext().getRequestDispatcher("/CadastroClientes.jsp").forward(request, response);
                 }
-                getServletContext().getRequestDispatcher("/TelaDeProdutos.jsp").forward(request, response);
-
-            } else {
-                rd = request.getRequestDispatcher("/index.html");
-            }
-
+                                
+            } 
+            
         } catch (Exception e) {
             e.printStackTrace();
             throw new ServletException(e);

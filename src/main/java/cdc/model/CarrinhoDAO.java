@@ -81,7 +81,7 @@ public class CarrinhoDAO implements DAO {
             throw new Exception(e);
         }
     }
-    
+
     public List listaIntensDoCarrinho(String idUsu) throws Exception {
         PreparedStatement ps = null;
         Connection conn = null;
@@ -89,32 +89,30 @@ public class CarrinhoDAO implements DAO {
 
         try {
             conn = this.conn;
-            ps = conn.prepareStatement("SELECT * " 
-                                       +"FROM  Carrinho " 
-                                       +"INNER JOIN Produto " 
-                                       +   "ON (Carrinho.idProdutoCarrinho = Produto.idProduto) " 
-                                       +   "INNER JOIN ImagemProduto " 
-                                       +   "ON (ImagemProduto.idProduto = Produto.idProduto) " 
-                                       +   "WHERE Carrinho.idUsuarioCarrinho= '" + idUsu + "'"
-                                       +   "ORDER BY `Carrinho`.`idCarrinho` ASC");
+            ps = conn.prepareStatement("SELECT * "
+                    + "FROM  Carrinho "
+                    + "INNER JOIN Produto "
+                    + "ON (Carrinho.idProdutoCarrinho = Produto.idProduto) "
+                    + "INNER JOIN ImagemProduto "
+                    + "ON (ImagemProduto.idProdutoImagemProduto = Produto.idProduto) "
+                    + "WHERE Carrinho.idUsuarioCarrinho= '" + idUsu + "'"
+                    + "ORDER BY `Carrinho`.`idCarrinho` ASC");
 
             System.out.println("SQL : " + ps);
             rs = ps.executeQuery();
 
             List lista = new ArrayList();
             while (rs.next()) {
-                lista.add(new Carrinho(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4), rs.getString(5), rs.getFloat(6), rs.getString(7),
+                lista.add(new Carrinho(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getFloat(6), rs.getString(7),
                         rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getString(11),
                         rs.getString(12), rs.getString(13), rs.getInt(14)));
             }
             return lista;
         } catch (SQLException e) {
             throw new Exception(e);
-        } finally {
-            ConnectionDAO.closeConnection(conn, ps, rs);
         }
     }
-    
+
     public void excluirPromo(int id) throws Exception {
         PreparedStatement ps = null;
         Connection conn = null;
@@ -135,8 +133,8 @@ public class CarrinhoDAO implements DAO {
             throw new Exception(e);
         }
     }
-    
-    public void excluirItemDocarrinho(String idItemCompra) throws Exception {
+
+    public void excluirItemDoCarrinho(String idItemCompra) throws Exception {
         PreparedStatement ps = null;
         Connection conn = null;
 
@@ -144,7 +142,7 @@ public class CarrinhoDAO implements DAO {
             throw new Exception("O valor passado não pode ser nulo!");
         }
         try {
-            String sql = "DELETE FROM Carrinho WHERE idProdutoCarrinho = '" + idItemCompra +"'";
+            String sql = "DELETE FROM Carrinho WHERE idProdutoCarrinho = '" + idItemCompra + "'";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             ps.executeUpdate();
@@ -154,6 +152,32 @@ public class CarrinhoDAO implements DAO {
             ConnectionDAO.closeConnection(conn, ps);
         }
     }
-    
+
+    public List precoTotalItensDoCarrinho(String idUsuario) throws Exception {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            conn = this.conn;
+
+            ps = conn.prepareStatement("SELECT SUM(Produto.precoProduto) FROM Carrinho INNER JOIN Produto "
+                    + "ON (Carrinho.idProdutoCarrinho = Produto.idProduto) INNER JOIN ImagemProduto "
+                    + "ON (ImagemProduto.idProdutoImagemProduto = Produto.idProduto) "
+                    + "WHERE Carrinho.idUsuarioCarrinho= " + idUsuario);
+
+            rs = ps.executeQuery();
+
+            List total = new ArrayList();
+            while (rs.next()) {
+                total.add(rs.getInt(1));
+            }
+            return total;
+        } catch (SQLException e) {
+            throw new Exception(e);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps, rs);
+        }
+    }
 
 }

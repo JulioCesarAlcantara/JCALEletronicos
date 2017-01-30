@@ -1,9 +1,3 @@
-<%-- 
-    Document   : Carrinho
-    Created on : 26/01/2017, 23:53:04
-    Author     : cesar
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,7 +12,7 @@
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
               rel="stylesheet" type="text/css">
         <link href="/CSS.css" rel="stylesheet" type="text/css">
-        <title> Adicionar ao Carrinho</title>
+        <title> Login</title>
     </head>
 
     <body>
@@ -26,7 +20,7 @@
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
-                        <span class="sr-only"></span>
+                        <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -46,36 +40,52 @@
                 <br>
             </div>
         </div>
-        <div class="section">
+     <div class="section">
             <div class="container">
-                <div class="row col-md-3">   
-                    <c:forEach var="lista" items="${requestScope.ItensDeProdutos}">                      
-                            <table style="width: 25%" class="table table-responsive">
+                <div class="row">                   
+                    <div>  
+                        <c:forEach var="lista" items="${requestScope.listaDeProdutosNoCarrinho}">                      
+                            <table style="width: 100%" class="table">
                                 <tr>
-                                    <td> <img src="${lista.imagem1}"> </td> 
-                                    <td rowspan="3" valign="top">
-                                        <div id="menu" >
-                                            <form action="ItensDoCarrinho" method="get">
-                                            <input type="hidden" name="idPro" value="${lista.idProduto}"/>
-                                            <big><big><big><big><big><big><big><big><big><big><h2> ${lista.nomeProduto} </h2>
-                                            <br><h4>${lista.descricaoProduto}</h4>
-                                            <br><h3>R$ ${lista.precoProduto}</h3>
-                                            <br><input type="submit" class="btn btn-success col-lg-6 col-md-1 col-sm-2 col-xs-1" value="Adicionar no Carrinho" />                                            
-                                            </form>
-                                        </div>
-                                    </td> 
-                                </tr> 
+                                    <th> Nome do Produto</th>
+                                    <th> Descrição do Produto</th>
+                                    <th> Preço do Produto </th>
+                                    <th> Excluir </th>
+                                </tr>                                
                                 <tr>
-                                    <td> <img src="${lista.imagem2}"> </td>
-                                </tr>
-                                <tr>
-                                    <td> <img src="${lista.imagem3}"> </td>  
+                                    <td> ${lista.nomeProduto} </td> 
+                                    <td> ${lista.descricaoProduto} </td>
+                                    <td> R$ ${lista.precoProduto} </td>
+                                    <td> 
+                                        <form action="Carrinho" method="get" id="ex"> 
+                                            <input type="hidden" name="cmd" value="del"/>
+                                            <input type="hidden" name="idProduto" value="${lista.idProduto}"/>
+                                            <input type="submit" class="btn btn-danger col-lg-6 col-md-1 col-sm-2 col-xs-1" value="Excluir" onClick="location.reload()"/>
+                                        </form>   
+                                    </td>
                                 </tr>
                             </table> 
+
                         </c:forEach> 
+                        <table style="width: 100%" class="table" id="table-total">
+                            
+                            <tr>
+                                <th rowspan="4"> Total </td>
+                                <td></td>
+                                <td> <input type="text" name="total" value="R$ ${requestScope.total.get(0)}" readonly="true" class="form-control text-center"/></td>
+                                <td></td>
+                            </tr>
+                        </table>
+
+
+
+
+
+                    </div>
                 </div>
             </div>
         </div>
+
+
     </body>
 </html>
-

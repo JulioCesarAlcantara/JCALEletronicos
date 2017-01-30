@@ -24,6 +24,14 @@
         <servlet-name>MontaCarrinho</servlet-name>
         <servlet-class>cdc.controller.ServletTelaDeProdutos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ItensDoCarrinho</servlet-name>
+        <servlet-class>cdc.controller.ServletItensDoCarrinho</servlet-class>
+    </servlet>
+        <servlet>
+        <servlet-name>Carrinho</servlet-name>
+        <servlet-class>cdc.controller.ServletCarrinho</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>cadPro</servlet-name>
         <url-pattern>/cadPro</url-pattern>
@@ -47,6 +55,14 @@
     <servlet-mapping>
         <servlet-name>MontaCarrinho</servlet-name>
         <url-pattern>/MontaCarrinho</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ItensDoCarrinho</servlet-name>
+        <url-pattern>/ItensDoCarrinho</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>Carrinho</servlet-name>
+        <url-pattern>/Carrinho</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

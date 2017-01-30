@@ -3,7 +3,6 @@ package cdc.controller;
 import cdc.model.MostraProdutoImagem;
 import cdc.model.ProdutoDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -23,8 +22,10 @@ public class ServletTelaDeProdutos extends HttpServlet {
             ProdutoDAO pro = new ProdutoDAO();
 
             ItensDeProdutos = pro.listaProdutosParaCompra(idProduto);
+            System.out.println("====== LISTA =====");
+            System.out.println(ItensDeProdutos);
             request.setAttribute("ItensDeProdutos", ItensDeProdutos);
-            request.getRequestDispatcher("/Carrinho.jsp").forward(request, response);
+            request.getRequestDispatcher("/AdicionarAoCarrinho.jsp").forward(request, response);
 
         } catch (Exception ex) {
             Logger.getLogger(ServletTelaDeProdutos.class.getName()).log(Level.SEVERE, null, ex);
