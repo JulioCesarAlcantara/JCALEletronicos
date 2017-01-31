@@ -47,10 +47,13 @@ public class ServletLogin extends HttpServlet {
                     
                 } else {
                     getServletContext().getRequestDispatcher("/CadastroClientes.jsp").forward(request, response);
-                }
-                                
+                }             
+            } else if(cmd.equalsIgnoreCase("sair")){
+                HttpSession usuarioSessao = request.getSession(false);
+                usuarioSessao.invalidate();
+                
+                getServletContext().getRequestDispatcher("/TelaDeProdutos.jsp").forward(request, response);       
             } 
-            
         } catch (Exception e) {
             e.printStackTrace();
             throw new ServletException(e);

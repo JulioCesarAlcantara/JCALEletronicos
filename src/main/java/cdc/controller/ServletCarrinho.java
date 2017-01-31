@@ -29,7 +29,7 @@ public class ServletCarrinho extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession(true);
         String cmd = request.getParameter("cmd");
 
         if (cmd == null) {

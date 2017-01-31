@@ -25,11 +25,83 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active">
-                            <br><a href="TelaDeProdutos.jsp">Home</a>
-                        </li>
+                        <%
+                            HttpSession sessao = request.getSession(true);
+                            String tipoUsuario = "c";
+                            boolean newSession;
+                            if (sessao.isNew()) {
+                                sessao.invalidate();
+                                newSession = true;
+                            } else {
+                                sessao.setMaxInactiveInterval(120);
+                                try{
+                                    tipoUsuario = (String)sessao.getAttribute("usuarioTipo").toString();
+                                } catch(Exception ex){
+                                    tipoUsuario = "c"; 
+                                    newSession = true;                                
+                                }
+                                
+                                tipoUsuario = (String)sessao.getAttribute("usuarioTipo").toString();
+                                newSession = false;
+                            }
+                        %>
+
                         <li>
-                            <br><a href="#">Contacts</a>
+                            <a href="TelaDeProdutos.jsp">Home</a>
+                        </li>
+                        <%
+                           if (tipoUsuario.equalsIgnoreCase("a") || tipoUsuario.equalsIgnoreCase("v")) {%>
+                           
+                        <li>
+                            <a href="clientes?cmd=listar">Gerenciar Clientes</a>
+                        </li>
+                        <%}%>
+                        <%
+                            if (tipoUsuario.equalsIgnoreCase("a")) {
+                        %>
+                        <li>
+                            <a href="usuarios?cmd=listar">Gerenciar Usuarios</a>
+                        </li>
+                        <%}%>
+
+                        <%
+                            if (tipoUsuario.equalsIgnoreCase("g")) {
+                        %>
+
+                        <li>
+                            <a href="promocao?cmd=listar">Gerenciar Promoções</a>
+                        </li>
+                        <%}%>
+
+                        <%
+                            if (tipoUsuario.equalsIgnoreCase("e")) {
+                        %>
+                        <li>
+                            <a href="cadPro?cmd=listar">Gerenciar Produtos</a>
+                        </li>
+
+                        <%}
+                            if (tipoUsuario.equalsIgnoreCase("c") && !newSession) {
+                                String idCliente = sessao.getAttribute("idLoginUsuario").toString();
+                        %>
+                        <li>
+                            <a href="clientes?cmd=update&id=<%out.println(idCliente);%>">Alterar meus Dados</a>
+                        </li>
+
+
+                        <li>
+                            <form action="Carrinho" method="get"> 
+                                <input type="submit" class="btn btn-lg" value="Meu Carrinho"/>  
+                            </form>
+                        </li>
+                        <%}%>
+
+                        <li>
+                            <a href="LoginDeUsuarios.jsp">Login</a>
+                        </li>
+                        
+                        <li>
+                            <%if(!newSession)%> <a href="login?cmd=sair">Sair</a>
                         </li>
                     </ul>
                 </div>
