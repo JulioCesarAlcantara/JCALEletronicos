@@ -53,12 +53,13 @@ public class ServletCarrinho extends HttpServlet {
             String idUsuario = session.getAttribute("idLoginUsuario").toString();
             System.out.println("========" + idUsuario);
 
-            if (!idUsuario.isEmpty() && !cmd.equalsIgnoreCase("del")) {
+            if (!idUsuario.isEmpty() && !cmd.equalsIgnoreCase("del") && !cmd.equalsIgnoreCase("finalizaCompra")) {
 
                 List<Carrinho> listaDeProdutosNoCarrinho = new ArrayList<Carrinho>();
                 CarrinhoDAO carrinho = new CarrinhoDAO();
                 listaDeProdutosNoCarrinho = carrinho.listaIntensDoCarrinho(idUsuario);
-                List total = carrinho.precoTotalItensDoCarrinho(idUsuario);
+               float total = carrinho.precoTotalItensDoCarrinho(idUsuario);
+                
                 request.setAttribute("total", total);
                 
                 System.out.println("lista de produtos do carrinho: " + listaDeProdutosNoCarrinho);
@@ -149,14 +150,16 @@ public class ServletCarrinho extends HttpServlet {
                 GeradorDeBoleto gerador = new GeradorDeBoleto(boleto);
 
                 // Para gerar um boleto em PDF  
-                gerador.geraPDF("/home/cesar/BancoDoBrasil1.pdf");
+                gerador.geraPDF("/home/erik/BancoDoBrasil1asl2332.pdf");
 
                 // Para gerar um boleto em PNG  
-                gerador.geraPNG("/home/cesar/BancoDoBrasil1.png");
+                gerador.geraPNG("/home/erik/BancoDoBrasil1223232.png");
 
                 compra.setIdUsuarioCompra(id);
                 compra.setValor(valor);
                 compra.setFrete(4);
+                System.out.println("===============ID: "+id);
+                System.out.println("===============Valor: "+valor);
                 compraDAO.salvar(compra);
 //                 
                 //request.getRequestDispatcher("/TelaPrincipal.jsp").forward(request, response);

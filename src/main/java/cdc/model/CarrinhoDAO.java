@@ -153,7 +153,7 @@ public class CarrinhoDAO implements DAO {
         }
     }
 
-    public List precoTotalItensDoCarrinho(String idUsuario) throws Exception {
+    public float precoTotalItensDoCarrinho(String idUsuario) throws Exception {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -167,12 +167,11 @@ public class CarrinhoDAO implements DAO {
                     + "WHERE Carrinho.idUsuarioCarrinho= " + idUsuario);
 
             rs = ps.executeQuery();
-
-            List total = new ArrayList();
+            float preco = 0;
             while (rs.next()) {
-                total.add(rs.getInt(1));
+                preco = rs.getInt(1);
             }
-            return total;
+            return preco;
         } catch (SQLException e) {
             throw new Exception(e);
         } finally {

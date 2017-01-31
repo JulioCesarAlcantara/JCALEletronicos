@@ -72,12 +72,12 @@
                             <tr>
                                 <th rowspan="4"> Total </td>
                                 <td></td>
-                                <td> <input type="text" name="total" value="R$ ${requestScope.total.get(0)}" readonly class="form-control text-center"/></td>
+                                <td> <input type="text" name="total" value="R$ ${requestScope.total}" readonly class="form-control text-center"/></td>
                                 <td></td>
                             </tr>
                         </table>
-                       <form action="Carrinho" method="get"> 
-                            <input type="hidden" name="cmd" value=finalizaCompra/>
+                       <form action="Carrinho" method="get" id="ex"> 
+                            <input type="hidden" name="cmd" value="finalizaCompra" />
                             <input type="hidden" name="total" value="${requestScope.total}"/>
                             <%HttpSession sessao = request.getSession(false);%>
                             <input type="hidden" name="idUsua" value="<%out.print(sessao.getAttribute("idLoginUsuario").toString());%>">
