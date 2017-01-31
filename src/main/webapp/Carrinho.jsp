@@ -72,7 +72,7 @@
                             <tr>
                                 <th rowspan="4"> Total </td>
                                 <td></td>
-                                <td> <input type="text" name="total" value="R$ ${requestScope.total.get(0)}" readonly="true" class="form-control text-center"/></td>
+                                <td> <input type="text" name="total" value="R$ ${requestScope.total.get(0)}" readonly class="form-control text-center"/></td>
                                 <td></td>
                             </tr>
                         </table>
