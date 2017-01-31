@@ -23,7 +23,28 @@ public class ProdutoDAO implements DAO {
 
     @Override
     public void atualizar(Object ob) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Produto pro = (Produto) ob;
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        if (pro == null) {
+            throw new Exception("O valor passado não pode ser nulo.");
+        }
+
+        try {
+            String sql = "update Produto set nomeProduto = ?, precoProduto = ?, descricaoProduto=?, categoriaProduto = ?, quantidadeEstoqueProduto=? where idProduto = ?";
+            conn = this.conn;
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, pro.getNomeProduto());
+            ps.setFloat(2, pro.getPrecoProduto());
+            ps.setString(3, pro.getDescricaoProduto());
+            ps.setString(4, pro.getCategoriaProduto());
+            ps.setInt(5, pro.getQuantidadeEstoqueProduto());
+            ps.setInt(6, pro.getIdProduto());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new Exception(e);
+        }
     }
 
     @Override
@@ -37,7 +58,25 @@ public class ProdutoDAO implements DAO {
         }
 
         try {
-            String sql = "DELETE FROM Produto WHERE idProduto = ?";
+            String sql = "DELETE FROM PromocaoProduto WHERE idProdutoPromocaoProduto = ?";
+            conn = this.conn;
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, com.getIdProduto());
+            ps.executeUpdate();
+
+            sql = "delete from ImagemProduto where idProdutoImagemProduto = ?";
+            conn = this.conn;
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, com.getIdProduto());
+            ps.executeUpdate();
+
+            sql = "delete from Carrinho where idProdutoCarrinho = ?";
+            conn = this.conn;
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, com.getIdProduto());
+            ps.executeUpdate();
+
+            sql = "DELETE FROM Produto WHERE idProduto = ?";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             ps.setInt(1, com.getIdProduto());
@@ -77,7 +116,52 @@ public class ProdutoDAO implements DAO {
 
     @Override
     public List procura(Object ob) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       Produto com = (Produto) ob;
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        if (com == null) {
+            throw new Exception("O valor passado não pode ser nulo");
+        }
+        try {
+            conn = this.conn;
+            String SQL = "select * from Produto ";
+            String where = "";
+            boolean checa = false;
+            if (com.getIdProduto() != 0) {
+                where = "where ";
+                if (com.getIdProduto() != 0) {
+                    where += "idProduto=? ";
+                    checa = true;
+                }
+            }
+
+            ps = conn.prepareStatement(SQL + where);
+            int contaCampos = 1;
+            if (com.getIdProduto() != 0) {
+                if (com.getIdProduto() != 0) {
+                    ps.setInt(contaCampos, com.getIdProduto());
+                    contaCampos++;
+                }
+            }
+            rs = ps.executeQuery();
+            List<Produto> list = new ArrayList<Produto>();
+            while (rs.next()) {
+                Integer idProduto = rs.getInt(1);
+                String nomeProduto = rs.getString(2);
+                Float precoProduto = rs.getFloat(3);
+                String descricaoProduto = rs.getString(4);
+                String categoriaProduto = rs.getString(5);
+                int quantidadeProduto = rs.getInt(6);
+                
+                list.add(new Produto(idProduto, nomeProduto, precoProduto, descricaoProduto, categoriaProduto, quantidadeProduto));
+            }
+            return list;
+        } catch (SQLException sqle) {
+            throw new Exception(sqle);
+        } finally {
+            ConnectionDAO.close(conn, ps, rs);
+        }
     }
 
     @Override
@@ -102,9 +186,9 @@ public class ProdutoDAO implements DAO {
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new Exception(e);
-        } 
+        }
     }
-    
+
     public List buscaListaDeProdutosPesquisados(String str) throws Exception {
         PreparedStatement ps = null;
         Connection conn = null;
@@ -185,7 +269,7 @@ public class ProdutoDAO implements DAO {
             ConnectionDAO.closeConnection(conn, ps, rs);
         }
     }
-    
+
     public int buscaIdDoProdutoPeloNome(String str) throws Exception {
         ResultSet rs = null;
         Connection conn = null;
@@ -210,6 +294,5 @@ public class ProdutoDAO implements DAO {
             ConnectionDAO.closeConnection(conn, ps);
         }
     }
-    
 
 }
