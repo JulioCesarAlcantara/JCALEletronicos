@@ -13,6 +13,10 @@ public class Promocao {
     public Promocao() {
     }
 
+    public Promocao(int idPromocao) {
+        this.idPromocao = idPromocao;
+    }
+
     public Promocao(String nomePromocao, Date dataComecoPromocao, Date dataFimPromocao, float descontoPromocao, String statusPromocao) {
         this.nomePromocao = nomePromocao;
         this.dataComecoPromocao = dataComecoPromocao;

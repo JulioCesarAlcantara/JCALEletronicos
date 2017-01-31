@@ -28,9 +28,17 @@
         <servlet-name>ItensDoCarrinho</servlet-name>
         <servlet-class>cdc.controller.ServletItensDoCarrinho</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>Carrinho</servlet-name>
         <servlet-class>cdc.controller.ServletCarrinho</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>promocao</servlet-name>
+        <servlet-class>cdc.controller.ServletPromocao</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>promocaoProduto</servlet-name>
+        <servlet-class>cdc.controller.ServletAssociaProdutoPromocao</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>cadPro</servlet-name>
@@ -60,9 +68,17 @@
         <servlet-name>ItensDoCarrinho</servlet-name>
         <url-pattern>/ItensDoCarrinho</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>Carrinho</servlet-name>
         <url-pattern>/Carrinho</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>promocao</servlet-name>
+        <url-pattern>/promocao</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>promocaoProduto</servlet-name>
+        <url-pattern>/promocaoProduto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

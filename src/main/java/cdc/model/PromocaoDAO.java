@@ -88,7 +88,7 @@ public class PromocaoDAO implements DAO {
 
         try {
             conn = this.conn;
-            ps = conn.prepareStatement("select * from Promocao");
+            ps = conn.prepareStatement("SELECT * FROM Promocao");
             rs = ps.executeQuery();
             List<Promocao> list = new ArrayList<Promocao>();
             
@@ -102,7 +102,7 @@ public class PromocaoDAO implements DAO {
                 String statusPromo = rs.getString(6);
                 list.add(new Promocao(idPromocao, nomePromocao, dataInicio, dataFim, descontoPromo, statusPromo));
             }
-            
+            System.out.println("Lista: " + list);
             return list;
             
         } catch (SQLException sqle) {
@@ -114,7 +114,74 @@ public class PromocaoDAO implements DAO {
 
     @Override
     public List procura(Object ob) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Promocao cat = (Promocao) ob;
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        if (cat == null) {
+            throw new Exception("O valor passado não pode ser nulo");
+        }
+        try {
+            conn = this.conn;
+            String SQL = "select * from Promocao ";
+            String where = "";
+            boolean checa = false;
+            if (cat.getIdPromocao()!= 0 || cat.getNomePromocao()!= null || cat.getStatusPromocao() != null) {
+                where = "where ";
+                if (cat.getIdPromocao()!= 0) {
+                    where += "idPromocao=? ";
+                    checa = true;
+                }
+                if(cat.getNomePromocao() != null){
+                    if (checa) {
+                        where += "and";
+                    }
+                    where +="nomePromocao=? ";
+                    checa=true;
+                }
+                
+                if (cat.getStatusPromocao()!= null) {
+                    if (checa) {
+                        where += "and";
+                    }
+                    where += " statusPromocao=? ";
+                    checa = true;
+                }
+            }
+
+            ps = conn.prepareStatement(SQL + where);
+            int contaCampos = 1;
+            if (cat.getIdPromocao()!= 0 || cat.getNomePromocao()!= null || cat.getStatusPromocao() != null) {
+                if (cat.getIdPromocao()!= 0) {
+                    ps.setInt(contaCampos, cat.getIdPromocao());
+                    contaCampos++;
+                }
+                if(cat.getNomePromocao() != null){
+                    ps.setString(contaCampos, cat.getNomePromocao());
+                    contaCampos++;
+                }
+                if (cat.getStatusPromocao()!= null) {
+                    ps.setString(contaCampos, cat.getStatusPromocao());
+                    contaCampos++;
+                }
+            }
+            rs = ps.executeQuery();
+            List<Promocao> list = new ArrayList<Promocao>();
+            while (rs.next()) {
+                Integer idPromocao = rs.getInt(1);
+                String nomePromocao = rs.getString(2);
+                Date dataInicio = rs.getDate(3);
+                Date dataFim = rs.getDate(4);
+                float descontoPromo = rs.getFloat(5);
+                String statusPromo = rs.getString(6);
+                list.add(new Promocao(idPromocao, nomePromocao, dataInicio, dataFim, descontoPromo, statusPromo));
+            }
+            return list;
+        } catch (SQLException sqle) {
+            throw new Exception(sqle);
+        } finally {
+            ConnectionDAO.close(conn, ps, rs);
+        }
     }
 
     @Override
@@ -128,7 +195,7 @@ public class PromocaoDAO implements DAO {
         }
         
         try {
-            String SQL = "INSERT INTO Promocao (nomePromocao, dataInicioPromocao, dataFimPromocao, descontoPromocao, statusPromocao) VALUES (?,?,?,?,?)";
+            String SQL = "INSERT INTO Promocao (nomePromocao, dataComecoPromocao, dataFimPromocao, descontoPromocao, statusPromocao) VALUES (?,?,?,?,?)";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.setString(1, promo.getNomePromocao());

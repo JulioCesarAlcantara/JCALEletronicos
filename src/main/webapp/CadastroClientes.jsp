@@ -81,25 +81,25 @@
                                 </div>	
                                 <div class="col-sm-4 form-group">
                                     <label>CPF</label>
-                                    <input type="text" placeholder="Cadastro de Pessoa Física aqui.." class="form-control" name="cpfCliente">
+                                    <input type="text" placeholder="Cadastro de Pessoa Física aqui.." required autofocus class="form-control" name="cpfCliente">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Endereço</label>
-                                <textarea placeholder="Entre com o Endereço aqui.." rows="3" class="form-control" name="enderecoCliente"></textarea>
+                                <textarea placeholder="Entre com o Endereço aqui.." rows="3" class="form-control" required name="enderecoCliente"></textarea>
                             </div>	
                             <div class="row">
                                 <div class="col-sm-4 form-group">
                                     <label>Cidade</label>
-                                    <input type="text" placeholder="Entre com o nome da cidade aqui.." class="form-control" name="cidadeCliente">
+                                    <input type="text" placeholder="Entre com o nome da cidade aqui.." class="form-control" required name="cidadeCliente">
                                 </div>	
                                 <div class="col-sm-4 form-group">
                                     <label>Estado</label>
-                                    <input type="text" placeholder="Entre com o Estado aqui.." class="form-control" name="estadoCliente">
+                                    <input type="text" placeholder="Entre com o Estado aqui.." class="form-control" required name="estadoCliente">
                                 </div>	
                                 <div class="col-sm-4 form-group">
                                     <label>CEP</label>
-                                    <input type="text" placeholder="Entre com o CEP aqui.." class="form-control" name="cepCliente">
+                                    <input type="text" placeholder="Entre com o CEP aqui.." class="form-control" required name="cepCliente">
                                 </div>		
                             </div>
                             <div class="row">
