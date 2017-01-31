@@ -11,7 +11,7 @@
               rel="stylesheet" type="text/css">
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
               rel="stylesheet" type="text/css">
-        <link href="/CSS.css" rel="stylesheet" type="text/css">
+        <link href="CSS.css" rel="stylesheet" type="text/css">
         <title> Login</title>
     </head>
 
@@ -25,7 +25,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                     <a class="navbar-brand"><span><h3> JCALEletronicos </h3></span></a>
+                    <a class="navbar-brand"><span><h3> JCALEletronicos </h3></span></a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -40,18 +40,19 @@
                 <br>
             </div>
         </div>
-     <div class="section">
+        <div class="section">
             <div class="container">
                 <div class="row">                   
                     <div>  
-                        <c:forEach var="lista" items="${requestScope.listaDeProdutosNoCarrinho}">                      
-                            <table style="width: 100%" class="table">
-                                <tr>
-                                    <th> Nome do Produto</th>
-                                    <th> Descrição do Produto</th>
-                                    <th> Preço do Produto </th>
-                                    <th> Excluir </th>
-                                </tr>                                
+
+                        <table style="width: 100%" class="table">
+                            <tr>
+                                <th> Nome do Produto</th>
+                                <th> Descrição do Produto</th>
+                                <th> Preço do Produto </th>
+                                <th> Excluir </th>
+                            </tr>   
+                            <c:forEach var="lista" items="${requestScope.listaDeProdutosNoCarrinho}"> 
                                 <tr>
                                     <td> ${lista.nomeProduto} </td> 
                                     <td> ${lista.descricaoProduto} </td>
@@ -60,15 +61,14 @@
                                         <form action="Carrinho" method="get" id="ex"> 
                                             <input type="hidden" name="cmd" value="del"/>
                                             <input type="hidden" name="idProduto" value="${lista.idProduto}"/>
-                                            <input type="submit" class="btn btn-danger col-lg-6 col-md-1 col-sm-2 col-xs-1" value="Excluir" onClick="location.reload()"/>
+                                            <input type="submit" class="btn btn-danger col-lg-6 col-md-3 col-sm-4 col-xs-2" value="Excluir" onClick="location.reload()"/>
                                         </form>   
                                     </td>
                                 </tr>
-                            </table> 
+                            </c:forEach> 
+                        </table> 
 
-                        </c:forEach> 
                         <table style="width: 100%" class="table" id="table-total">
-                            
                             <tr>
                                 <th rowspan="4"> Total </td>
                                 <td></td>
@@ -76,11 +76,6 @@
                                 <td></td>
                             </tr>
                         </table>
-
-
-
-
-
                     </div>
                 </div>
             </div>

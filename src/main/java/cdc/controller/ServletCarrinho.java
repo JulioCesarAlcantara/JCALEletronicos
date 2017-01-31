@@ -5,6 +5,7 @@
  */
 package cdc.controller;
 
+import br.com.caelum.stella.boleto.Pagador;
 import cdc.model.Carrinho;
 import cdc.model.CarrinhoDAO;
 import java.io.IOException;
@@ -48,7 +49,7 @@ public class ServletCarrinho extends HttpServlet {
                 listaDeProdutosNoCarrinho = carrinho.listaIntensDoCarrinho(idUsuario);
                 List total = carrinho.precoTotalItensDoCarrinho(idUsuario);
                 request.setAttribute("total", total);
-
+                
                 System.out.println("lista de produtos do carrinho: " + listaDeProdutosNoCarrinho);
 
                 request.setAttribute("listaDeProdutosNoCarrinho", listaDeProdutosNoCarrinho);
