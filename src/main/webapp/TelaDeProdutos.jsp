@@ -29,11 +29,57 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                     <ul class="nav navbar-nav navbar-right">
+                        <%
+                        HttpSession sessao = request.getSession(false);
+                        String tipoUsuario = sessao.getAttribute("usuarioTipo").toString();
+                       
+                        if (tipoUsuario.equalsIgnoreCase("a") || tipoUsuario.equalsIgnoreCase("v")) {%>
                         <li>
-                            <br><a href="TelaDeProdutos.jsp">Home</a>
+                            <a href="clientes?cmd=listar">Gerenciar Clientes</a>
                         </li>
+                        <%}%>
+                        <%
+                            if (tipoUsuario.equalsIgnoreCase("a")) {
+                        %>
                         <li>
-                            <br><a href="#">Contacts</a>
+                            <a href="usuarios?cmd=listar">Gerenciar Usuarios</a>
+                        </li>
+                        <%}%>
+
+                        <%
+                            if (tipoUsuario.equalsIgnoreCase("g")) {
+                        %>
+
+                        <li>
+                            <a href="promocao?cmd=listar">Gerenciar Promoções</a>
+                        </li>
+                        <%}%>
+
+                        <%
+                            if (tipoUsuario.equalsIgnoreCase("e")) {
+                        %>
+                        <li>
+                            <a href="produtos?cmd=listar">Gerenciar Produtos</a>
+                        </li>
+
+                        <%}
+                            String idCliente = sessao.getAttribute("idLoginUsuario").toString();
+                            if (tipoUsuario.equalsIgnoreCase("c")) {
+                        %>
+                        <li>
+                            <a href="clientes?cmd=update&id=<%out.println(idCliente);%>">Alterar meus Dados</a>
+                        </li>
+
+
+                        <li>
+                            <form action="Carrinho" method="get"> 
+                                <input type="submit" class="btn btn-lg" value="Meu Carrinho"/>  
+                            </form>
+                        </li>
+                            <%}%>
+
+                        <li>
+                            <a href="LoginDeUsuarios.jsp">Login</a>
                         </li>
                     </ul>
                 </div>
@@ -64,11 +110,11 @@
                 </div>
             </div>
         </div>
-        
+
         <% List<MostraProdutoImagem> lista = new ArrayList<MostraProdutoImagem>();
             ProdutoDAO produto = new ProdutoDAO();
             String pesquisa = request.getParameter("pesquisaPalavra");
-            out.print(pesquisa);
+            //Implementar a pesquisa.
             if (pesquisa != null) {
                 lista = produto.buscaListaDeProdutosPesquisados(pesquisa);
             } else {
@@ -82,16 +128,16 @@
         <div class="section">
             <div class="container">
                 <div class="row">
-                    
-                    <% for(MostraProdutoImagem proList : lista){%>
-                    <form action="" method=""> 
-                    <div class="col-md-3">
-                        <img src="<%out.print(proList.getImagem1());%>"
-                             class="img-responsive">
-                        <h2><%out.print(proList.getNomeProduto());%></h2>
-                        <p><%out.print(proList.getDescricaoProduto());%></p>
-                        <input type="submit" value="Efetuar Comprar" class="btn btn-primary">
-                    </div>
+                    <% for (MostraProdutoImagem proList : lista) {%>
+                    <form action="MontaCarrinho" method="get"> 
+                        <input type="hidden" name="idProduto" value="<%out.print(proList.getIdProduto());%>"/>      
+                        <div class="col-md-3">
+                            <img src="<%out.print(proList.getImagem1());%>"
+                                 class="img-responsive">
+                            <h2><%out.print(proList.getNomeProduto());%></h2>
+                            <p><%out.print(proList.getDescricaoProduto());%></p>
+                            <input type="submit" value="Efetuar Comprar" class="btn btn-primary">
+                        </div>
                     </form>
                     <%}%>
                 </div>

@@ -219,6 +219,27 @@ public class UsuarioDAO implements DAO {
             return idUsuario;
         } catch (SQLException e) {
             throw new Exception(e);
+        } 
+    }
+    
+    public String buscaTipoDoUsuarioPeloId(String idUsuario)throws Exception {
+    PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            conn = this.conn;
+            ps = conn.prepareStatement("SELECT tipoUsuario FROM `Usuario` WHERE idUsuario= '"+idUsuario+"'");
+
+            rs = ps.executeQuery();
+            String tipo = null;
+            while (rs.next()) {
+                tipo = rs.getString(1);
+            }
+
+            return tipo;
+        } catch (SQLException e) {
+            throw new Exception(e);
         } finally {
             ConnectionDAO.closeConnection(conn, ps, rs);
         }

@@ -54,7 +54,7 @@
                             
                             <th><h4> </h4></th>
                         </tr>
-                        <c:forEach var="lista" items="${ requestScope.listaClientes }">
+                        <c:forEach var="lista" items="${requestScope.listaClientes}">
                             <tr>
                                 <td>${lista.primeiroNomeCliente} ${lista.segundoNomeCliente}&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td><a href="clientes?cmd=update&id=${lista.idCliente}"> Atualizar &nbsp;</a></td>
