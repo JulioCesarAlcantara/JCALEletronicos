@@ -76,6 +76,14 @@
                                 <td></td>
                             </tr>
                         </table>
+                       <form action="Carrinho" method="get"> 
+                            <input type="hidden" name="cmd" value=finalizaCompra/>
+                            <input type="hidden" name="total" value="${requestScope.precoTotal}"/>
+                            <%HttpSession sessao = request.getSession(false);%>
+                            <input type="hidden" name="idUsua" value="<%out.print(sessao.getAttribute("idUsuarioLogin").toString());%>">
+                            <input type="submit" class="btn alinhado-direita btn-danger" value="" />
+                        </form>  
+
                     </div>
                 </div>
             </div>
