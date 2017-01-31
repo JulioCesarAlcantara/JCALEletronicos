@@ -78,10 +78,10 @@
                         </table>
                        <form action="Carrinho" method="get"> 
                             <input type="hidden" name="cmd" value=finalizaCompra/>
-                            <input type="hidden" name="total" value="${requestScope.precoTotal}"/>
+                            <input type="hidden" name="total" value="${requestScope.total}"/>
                             <%HttpSession sessao = request.getSession(false);%>
-                            <input type="hidden" name="idUsua" value="<%out.print(sessao.getAttribute("idUsuarioLogin").toString());%>">
-                            <input type="submit" class="btn alinhado-direita btn-danger" value="" />
+                            <input type="hidden" name="idUsua" value="<%out.print(sessao.getAttribute("idLoginUsuario").toString());%>">
+                            <input type="submit" class="btn alinhado-direita btn-danger" value="Comprar Agora" />
                         </form>  
 
                     </div>
