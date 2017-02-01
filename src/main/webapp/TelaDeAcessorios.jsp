@@ -137,25 +137,28 @@
                 </div>
             </div>
 
-                    <footer class="section"> 
-                        <div class="container"> 
-                            <div class="row"> 
-                                <div class="col-sm-4 form-group ">
-                                    <br><a href="TelaDeAcessorios.jsp" ><button class="btn btn-lg btn-primary btn-block">Acessórios</button></a> 
-                                </div>
-                                <div class="col-sm-4 form-group text-right">
-                                    <br><a href="TelaDeAparelhos.jsp" > <button class="btn btn-lg btn-success btn-block">Aparelhos</button></a>
-                                </div>
-                            </div>
+            <footer class="section"> 
+                <div class="container"> 
+                    <div class="row"> 
+                        <div class="col-sm-2 form-group ">
+                            <br><a href="TelaDeAcessorios.jsp" ><button class="btn btn-lg btn-primary btn-block">Acessórios</button></a> 
                         </div>
-                    </footer>
-            
-         
+                        <div class="col-sm-2 form-group text-right">
+                            <br><a href="TelaDeAparelhos.jsp" > <button class="btn btn-lg btn-success btn-block">Aparelhos</button></a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
             <%
-                List<MostraProdutoImagem> lista = new ArrayList<MostraProdutoImagem>();
-                ProdutoDAO produto = new ProdutoDAO();
-                String pesquisa = request.getParameter("pesquisaPalavra");   
+                    List<MostraProdutoImagem> 
                 
+                
+                
+                lista = new ArrayList<MostraProdutoImagem>();
+                ProdutoDAO produto = new ProdutoDAO();
+                String pesquisa = request.getParameter("pesquisaPalavra");
+
                 if (pesquisa != null) {
                     lista = produto.buscaListaDeAcessoriosPesquisados(pesquisa);
                 } else {
@@ -200,7 +203,9 @@
                                     <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a> 
                                     <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a> 
                                     <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a> 
-                                </div></div><div class="row">
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-12 hidden-xs text-right"> 
                                     <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a> 
                                     <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a> 
