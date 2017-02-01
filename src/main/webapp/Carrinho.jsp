@@ -81,6 +81,7 @@
                             <input type="hidden" name="total" value="${requestScope.total}"/>
                             <%HttpSession sessao = request.getSession(false);%>
                             <input type="hidden" name="idUsua" value="<%out.print(sessao.getAttribute("idLoginUsuario").toString());%>">
+                            <input type="file" name="endereco"/>
                             <center><input type="submit" class="btn btn-success" value="Fechar Compra Agora" /></center>
                         </form>  
 
