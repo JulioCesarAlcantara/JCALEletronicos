@@ -28,13 +28,7 @@
                     <a class="navbar-brand" href="#"><span>JCALEletronicos</span></a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-ex-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <br><a href="TelaDeProdutos.jsp">Home</a>
-                        </li>
-                        <li>
-                            <br><a href="CadastroClientes.jsp">Novo Cliente</a>
-                        </li>
+                    <ul class="nav navbar-nav navbar-right">                        
                         <li>
                             <br><a href="#">Contacts</a>
                         </li>
@@ -42,28 +36,35 @@
                 </div>
                 <br>
             </div>
-        </div>
-        <div class="container">
-            <h3 class="well">Listagem dos Usuarios</h3>
-            <div class="col-lg-12 well">
-                <div class="row">
-                    <table>
+        </div>        
+        <div id ="redor">
+            <div class="container">
+                <h3 class="well">Listagem dos Clientes..</h3>
+                <div class="row" >
+                    <div class="col-sm-6 form-group">
+                        <br><a href="TelaDeProdutos.jsp" ><button class="btn btn-lg btn-primary btn-block" type="submit"><< Voltar a tela Inicial</button></a> 
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <br><a href="CadastroClientes.jsp" > <button class="btn btn-lg btn-success btn-block" type="submit">Cadastrar novo Cliente >></button></a>
+                    </div>
+                </div>
+                <div style="padding: 10px; margin:10px;">
+                    <table style="width: 100%" class="table table-responsive">
                         <tr>
-                            <th><h4> Nome&nbsp; </h4></th>
-                            <th><h4> </h4></th>
-                            
-                            <th><h4> </h4></th>
-                        </tr>
+                            <th><center>Atualizar</center></th>
+                            <th><center> Nome </center> </th>
+                            <th><center>Excluir</center></th>
+                            </tr>
                         <c:forEach var="lista" items="${requestScope.listaClientes}">
                             <tr>
-                                <td>${lista.primeiroNomeCliente} ${lista.segundoNomeCliente}&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                <td><a href="clientes?cmd=update&id=${lista.idCliente}"> Atualizar &nbsp;</a></td>
-                                <td><a href="clientes?cmd=del&id=${lista.idCliente}"> Excluir</a></td>
-                            </c:forEach>
+                                <td><center><a href="clientes?cmd=update&id=${lista.idCliente}">Atualizar</a></center></td>
+                                <td><center>${lista.primeiroNomeCliente} ${lista.segundoNomeCliente}</center></td>
+                                <td><center><a href="clientes?cmd=del&id=${lista.idCliente}">Excluir</a></center></td>
+                            </tr>
+                        </c:forEach>
                     </table>
-
                 </div>
             </div>
-        </div>
+        </div>        
     </body>
 </html>

@@ -198,7 +198,7 @@ public class ProdutoDAO implements DAO {
             String sql = "SELECT Produto.idProduto, nomeProduto, precoProduto, descricaoProduto, categoriaProduto, quantidadeEstoqueProduto,"
                     + " idImagemProduto, imagem1,ImagemProduto.idProdutoImagemProduto"
                     + " FROM Produto"
-                    + "	INNER JOIN ImagemDeProduto"
+                    + "	INNER JOIN ImagemProduto"
                     + " ON ImagemProduto.idProdutoImagemProduto = Produto.idProduto "
                     + " WHERE Produto.nomeProduto "
                     + " LIKE '%" + str + "%'";
@@ -217,6 +217,68 @@ public class ProdutoDAO implements DAO {
             ConnectionDAO.closeConnection(conn, ps, rs);
         }
     }
+    
+    public List buscaListaDeAparelhosPesquisados(String str) throws Exception {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            String sql = "SELECT Produto.idProduto, nomeProduto, precoProduto, descricaoProduto, categoriaProduto, quantidadeEstoqueProduto,"
+                    + " idImagemProduto, imagem1,ImagemProduto.idProdutoImagemProduto"
+                    + " FROM Produto"
+                    + "	INNER JOIN ImagemProduto"
+                    + " ON ImagemProduto.idProdutoImagemProduto = Produto.idProduto "
+                    + " WHERE Produto.nomeProduto "
+                    + " LIKE '%" + str + "%'"
+                    + " AND Produto.categoriaProduto = 'ap'";
+
+            conn = this.conn;
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            List<MostraProdutoImagem> list = new ArrayList<MostraProdutoImagem>();
+            while (rs.next()) {
+                list.add(new MostraProdutoImagem(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9)));
+            }
+            return list;
+        } catch (SQLException e) {
+            throw new Exception(e);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps, rs);
+        }
+    }
+    
+    public List buscaListaDeAcessoriosPesquisados(String str) throws Exception {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            String sql = "SELECT Produto.idProduto, nomeProduto, precoProduto, descricaoProduto, categoriaProduto, quantidadeEstoqueProduto,"
+                    + " idImagemProduto, imagem1,ImagemProduto.idProdutoImagemProduto"
+                    + " FROM Produto"
+                    + "	INNER JOIN ImagemProduto"
+                    + " ON ImagemProduto.idProdutoImagemProduto = Produto.idProduto "
+                    + " WHERE Produto.nomeProduto "
+                    + " LIKE '%" + str + "%'"
+                    + " AND Produto.categoriaProduto = 'ac'";
+
+            conn = this.conn;
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            List<MostraProdutoImagem> list = new ArrayList<MostraProdutoImagem>();
+            while (rs.next()) {
+                list.add(new MostraProdutoImagem(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9)));
+            }
+            return list;
+        } catch (SQLException e) {
+            throw new Exception(e);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps, rs);
+        }
+    }
+
+
 
     public List listaProdutosParaCompra(String id) throws Exception {
         PreparedStatement ps = null;
@@ -292,6 +354,58 @@ public class ProdutoDAO implements DAO {
             throw new Exception(e);
         } finally {
             ConnectionDAO.closeConnection(conn, ps);
+        }
+    }
+    
+    public List listaTodosAcessorios() throws Exception {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            conn = this.conn;
+            ps = conn.prepareStatement("SELECT Produto.idProduto, nomeProduto, precoProduto, descricaoProduto, categoriaProduto, quantidadeEstoqueProduto,"
+                    + " idImagemProduto, imagem1,ImagemProduto.idProdutoImagemProduto"
+                    + " FROM Produto"
+                    + "	INNER JOIN ImagemProduto"
+                    + " ON ImagemProduto.idProdutoImagemProduto = Produto.idProduto"
+                    + " WHERE categoriaProduto = 'ac'");
+            rs = ps.executeQuery();
+            List<MostraProdutoImagem> lista = new ArrayList<MostraProdutoImagem>();
+            while (rs.next()) {
+                lista.add(new MostraProdutoImagem(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9)));
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new Exception(e);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps, rs);
+        }
+    }
+    
+    public List listaTodosAparelhos() throws Exception {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            conn = this.conn;
+            ps = conn.prepareStatement("SELECT Produto.idProduto, nomeProduto, precoProduto, descricaoProduto, categoriaProduto, quantidadeEstoqueProduto,"
+                    + " idImagemProduto, imagem1,ImagemProduto.idProdutoImagemProduto"
+                    + " FROM Produto"
+                    + "	INNER JOIN ImagemProduto"
+                    + " ON ImagemProduto.idProdutoImagemProduto = Produto.idProduto"
+                    + " WHERE categoriaProduto = 'ap'");
+            rs = ps.executeQuery();
+            List<MostraProdutoImagem> lista = new ArrayList<MostraProdutoImagem>();
+            while (rs.next()) {
+                lista.add(new MostraProdutoImagem(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9)));
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new Exception(e);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps, rs);
         }
     }
 

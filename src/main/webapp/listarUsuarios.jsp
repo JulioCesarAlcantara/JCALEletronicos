@@ -28,13 +28,7 @@
                     <a class="navbar-brand" href="#"><span>JCALEletronicos</span></a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-ex-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <br><a href="TelaDeProdutos.jsp">Home</a>
-                        </li>
-                        <li>
-                            <br><a href="CadastroUsuarios.jsp">Novo Usuario</a>
-                        </li>
+                    <ul class="nav navbar-nav navbar-right">                        
                         <li>
                             <br><a href="#">Contacts</a>
                         </li>
@@ -43,38 +37,46 @@
                 <br>
             </div>
         </div>
-        <div class="container">
-            <h3 class="well">Listagem dos Usuarios</h3>
-            <div class="col-lg-12 well">
-                <div class="row">
-                    <table>
+
+        <div id ="redor">
+            <div class="container">
+                <h3 class="well">Listagem dos Usuários..</h3>
+                <div class="row" >
+                    <div class="col-sm-6 form-group">
+                        <br><a href="TelaDeProdutos.jsp" ><button class="btn btn-lg btn-primary btn-block" type="submit"><< Voltar a tela Inicial</button></a> 
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <br><a href="CadastroUsuarios.jsp" > <button class="btn btn-lg btn-success btn-block" type="submit">Cadastrar novo Usuário >></button></a>
+                    </div>
+                </div>
+                <div style="padding: 10px; margin:10px;">
+                    <table style="width: 100%" class="table table-responsive">
                         <tr>
-                            <th><h4> ID - Atualizar&nbsp; </h4></th>
-                            <th><h4> Nome&nbsp; </h4></th>
-                            <th><h4> Tipo&nbsp; </h4></th>
-                            <th><h4> Excluir&nbsp; </h4></th>
-                        </tr>
-                        <c:forEach var="lista" items="${ requestScope.listaUsuarios }">
-                            <tr>
-                                <td><a href="usuarios?cmd=update&id=${lista.id}"> ${lista.id} &nbsp;</a></td>
-                                <td>${lista.primeiroNome} ${lista.segundoNome}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <th><center>Atualizar</center></th>
+                            <th><center> Nome </center> </th>
+                            <th><center> Tipo </center> </th>
+                            <th><center>Excluir</center></th>
+                            </tr>
+                        <c:forEach var="lista" items="${requestScope.listaUsuarios}">
+                        <tr>
+                                <td><center><a href="usuarios?cmd=update&id=${lista.id}">Atualizar</a></center></td>
+                                <td><center>${lista.primeiroNome} ${lista.segundoNome}</center></td>
                                 <c:if test="${lista.tipo eq 'v'}">
-                                    <td>Vendedor&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <td><center>Vendedor</center></td>
                                 </c:if>
                                 <c:if test="${lista.tipo eq 'a'}">
-                                    <td>Administrador&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <td><center>Administrador</center></td>
                                 </c:if>
                                 <c:if test="${lista.tipo eq 'g'}">
-                                    <td>Gerente&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <td><center>Gerente</center></td>
                                 </c:if>
                                 <c:if test="${lista.tipo eq 'e'}">
-                                    <td>Encarregado&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <td><center>Encarregado</center></td>
                                 </c:if>
-
-                                <td><a href="usuarios?cmd=del&id=${lista.id}"> Excluir</a></td>
-                            </c:forEach>
+                            <td><center><a href="usuarios?cmd=del&id=${lista.id}"> Excluir</a></center></td>
+                        </tr>
+                        </c:forEach>
                     </table>
-
                 </div>
             </div>
         </div>

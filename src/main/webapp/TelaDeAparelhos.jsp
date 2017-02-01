@@ -13,7 +13,7 @@
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
-        <title> Tela Principal</title>
+        <title> Tela Principal de Aparelhos</title>
     </head>
 
     <body>
@@ -95,11 +95,8 @@
 
 
                         <li>
-                            <form action="Carrinho" method="get">
-                                <span>
-                                    <img height="35" width="35" title="Carrinho" src="data:image/png;base64,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">
-                                    <input type="submit" class="form-control" value="Meu Carrinho"/>  
-                                </span>
+                            <form action="Carrinho" method="get"> 
+                                <input type="submit" class="btn btn-lg" value="Meu Carrinho"/>  
                             </form>
                         </li>
                         <%}%>
@@ -161,9 +158,9 @@
                 String pesquisa = request.getParameter("pesquisaPalavra");
 
                 if (pesquisa != null) {
-                    lista = produto.buscaListaDeProdutosPesquisados(pesquisa);
+                    lista = produto.buscaListaDeAparelhosPesquisados(pesquisa);
                 } else {
-                    lista = produto.listaTodos();
+                    lista = produto.listaTodosAparelhos();
                 }
 
                 if (lista.isEmpty()) {

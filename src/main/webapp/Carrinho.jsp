@@ -61,7 +61,7 @@
                                         <form action="Carrinho" method="get" id="ex"> 
                                             <input type="hidden" name="cmd" value="del"/>
                                             <input type="hidden" name="idProduto" value="${lista.idProduto}"/>
-                                            <input type="submit" class="btn btn-danger col-lg-6 col-md-3 col-sm-4 col-xs-2" value="Excluir" onClick="location.reload()"/>
+                                            <input type="submit" class="btn btn-danger" value="Excluir" onClick="location.reload()"/>
                                         </form>   
                                     </td>
                                 </tr>
@@ -81,7 +81,7 @@
                             <input type="hidden" name="total" value="${requestScope.total}"/>
                             <%HttpSession sessao = request.getSession(false);%>
                             <input type="hidden" name="idUsua" value="<%out.print(sessao.getAttribute("idLoginUsuario").toString());%>">
-                            <input type="submit" class="btn alinhado-direita btn-danger" value="Comprar Agora" />
+                            <center><input type="submit" class="btn btn-success" value="Fechar Compra Agora" /></center>
                         </form>  
 
                     </div>

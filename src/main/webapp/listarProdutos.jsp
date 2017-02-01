@@ -30,12 +30,6 @@
                 <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <br><a href="TelaDeProdutos.jsp">Home</a>
-                        </li>
-                        <li>
-                            <br><a href="CadastroDeProdutos.jsp">Novo Produto</a>
-                        </li>
-                        <li>
                             <br><a href="#">Contacts</a>
                         </li>
                     </ul>
@@ -43,25 +37,32 @@
                 <br>
             </div>
         </div>
-        <div class="container">
-            <h3 class="well">Listagem dos Produtos</h3>
-            <div class="col-lg-12 well">
-                <div class="row">
-                    <table>
+        <div id ="redor">
+            <div class="container">
+                <h3 class="well">Listagem dos Produtos..</h3>
+                <div class="row" >
+                    <div class="col-sm-6 form-group">
+                        <br><a href="TelaDeProdutos.jsp" ><button class="btn btn-lg btn-primary btn-block" type="submit"><< Voltar a tela Inicial</button></a> 
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <br><a href="CadastroDeProdutos.jsp" > <button class="btn btn-lg btn-success btn-block" type="submit">Cadastrar novo Produto >></button></a>
+                    </div>
+                </div>
+                <div style="padding: 10px; margin:10px;">
+                    <table style="width: 100%" class="table table-responsive">
                         <tr>
-                            <th><h4> Nome&nbsp; </h4></th>
-                            <th><h4> </h4></th>
-
-                            <th><h4> </h4></th>
-                        </tr>
-                        <c:forEach var="lista" items="${ requestScope.listaProdutos }">
+                            <th><center>Atualizar</center></th>
+                            <th><center> Nome </center> </th>
+                            <th><center>Excluir</center></th>
+                            </tr>
+                        <c:forEach var="lista" items="${requestScope.listaProdutos}">
                             <tr>
-                                <td>${lista.nomeProduto}&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                <td><a href="cadPro?cmd=update&id=${lista.idProduto}"> Atualizar &nbsp;</a></td>
-                                <td><a href="cadPro?cmd=del&id=${lista.idProduto}"> Excluir</a></td>
+                                <td><center><a href="cadPro?cmd=update&id=${lista.idProduto}"> Atualizar</a></center></td>
+                                <td><center>${lista.nomeProduto}</center></td>
+                                <td><center><a href="cadPro?cmd=del&id=${lista.idProduto}"> Excluir</a></center></td>
+                            </tr>
                         </c:forEach>
                     </table>
-
                 </div>
             </div>
         </div>
