@@ -125,7 +125,7 @@
                         <form action="pesqProduto" method="post">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="hidden" name="cmd" value="pesquisa"/>
+                                    <input type="hidden" name="cmd" value="pesquisaAp"/>
                                     <input type="text" class="form-control" placeholder="Pesquise por um produto aqui.." name="pesquisaPalavra">
                                     <span class="input-group-btn">
                                         <button class="btn btn-success" type="submit">Go</button>>

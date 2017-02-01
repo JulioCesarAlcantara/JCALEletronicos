@@ -125,7 +125,7 @@
                         <form action="pesqProduto" method="post">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="hidden" name="cmd" value="pesquisa"/>
+                                    <input type="hidden" name="cmd" value="pesquisaAc"/>
                                     <input type="text" class="form-control" placeholder="Pesquise por um produto aqui.." name="pesquisaPalavra">
                                     <span class="input-group-btn">
                                         <button class="btn btn-success" type="submit">Go</button>>
@@ -154,7 +154,7 @@
             <%
                 List<MostraProdutoImagem> lista = new ArrayList<MostraProdutoImagem>();
                 ProdutoDAO produto = new ProdutoDAO();
-                String pesquisa = request.getParameter("pesquisaPalavra");
+                String pesquisa = request.getParameter("pesquisaPalavra");   
                 
                 if (pesquisa != null) {
                     lista = produto.buscaListaDeAcessoriosPesquisados(pesquisa);

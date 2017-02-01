@@ -37,8 +37,10 @@ public class ServletPesquisaProduto extends HttpServlet {
             if (cmd.equalsIgnoreCase("pesquisa")) {
                 System.out.println(request.getParameter("pesquisaPalavra"));
                 getServletContext().getRequestDispatcher("/TelaDeProdutos.jsp").forward(request, response);
-            } else {
-                rd = request.getRequestDispatcher("/index.html");
+            } else if (cmd.equalsIgnoreCase("pesquisaAc")){
+                getServletContext().getRequestDispatcher("/TelaDeAcessorios.jsp").forward(request, response);
+            } else if (cmd.equalsIgnoreCase("pesquisaAp")){
+                getServletContext().getRequestDispatcher("/TelaDeAparelhos.jsp").forward(request, response);
             }
 
         } catch (Exception e) {
