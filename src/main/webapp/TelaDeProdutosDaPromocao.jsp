@@ -126,15 +126,8 @@
                                       List<Promocao> listaPromocoes = promocoes.listaTodos();
                                      
                         for (Promocao promo : listaPromocoes) {%>
-                        <li><a href="promocao?cmd=vitrinePromo&id=<%out.print(promo.getIdPromocao());%>"><%out.print(promo.getNomePromocao());%></a></li> 
+                        <li><a href="promocao?cmd=mostraProCliente&id=<%out.print(promo.getIdPromocao());%>"><%out.print(promo.getNomePromocao());%></a></li> 
                         <%}%>
-                                    
-                                    
-                                    
-                                    
-                                    
-
-
                                 </ul>
                             </div>    
                         </li>
@@ -182,24 +175,22 @@
             </footer>
 
 
-            <%
-                    List<MostraProdutoImagem> 
-                
-                
-                lista = new ArrayList<MostraProdutoImagem>();
-                ProdutoDAO produto = new ProdutoDAO();
-                String pesquisa = request.getParameter("pesquisaPalavra");
+             <% List<MostraProdutoImagem> lista = new ArrayList<>();
+            ProdutoDAO produto = new ProdutoDAO();
+            String pesquisa = request.getParameter("palavraPesquisa");
+            sessao = request.getSession(true);
+            String idPromo = sessao.getAttribute("idPromo").toString();
+            Integer id = Integer.parseInt(idPromo);
+            if (pesquisa != null) {
+                lista = produto.buscaListaDeProdutosPesquisados(pesquisa);
+            } else {
+                lista = produto.buscaDadosDoProdutoDeUmaPromocao(id);
+            }
 
-                if (pesquisa != null) {
-                    lista = produto.buscaListaDeProdutosPesquisados(pesquisa);
-                } else {
-                    lista = produto.listaTodos();
-                }
-
-                if (lista.isEmpty()) {
-                    response.sendRedirect("EmptyScreen.jsp");
-                }
-            %>
+            if (lista.isEmpty()) {
+                response.sendRedirect("EmptyScreen.jsp");
+            }
+        %>
             <div class="section">
                 <div class="container">
                     <div class="row">

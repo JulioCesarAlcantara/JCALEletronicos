@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class ServletPromocao extends HttpServlet {
 
@@ -81,6 +82,12 @@ public class ServletPromocao extends HttpServlet {
                 Promocao promo = new Promocao(id);
                 dao.excluir(promo);
                 getServletContext().getRequestDispatcher("/promocao?cmd=listar").forward(request, response);
+            } else if (cmd.equalsIgnoreCase("vitrinePromo")) {
+                HttpSession sessao = request.getSession(true);
+                Integer id = Integer.parseInt(request.getParameter("id"));
+                sessao.setAttribute("idPromo", id);
+                getServletContext().getRequestDispatcher("/TelaDeProdutosDaPromocao.jsp").forward(request, response);
+
             }
 
         } catch (Exception e) {

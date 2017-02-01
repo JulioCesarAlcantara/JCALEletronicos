@@ -408,5 +408,26 @@ public class ProdutoDAO implements DAO {
             ConnectionDAO.closeConnection(conn, ps, rs);
         }
     }
+    
+    public List buscaDadosDoProdutoDeUmaPromocao(int id) throws Exception {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            conn = this.conn;
+            ps = conn.prepareStatement("SELECT Produto.idProduto, nomeProduto, precoProduto, descricaoProduto, categoriaProduto, quantidadeEstoqueProduto, idImagemProduto, imagem1,ImagemProduto.idProdutoImagemProduto FROM PromocaoProduto INNER JOIN Produto ON idProduto = idProdutoPromocaoProduto INNER JOIN ImagemProduto ON ImagemProduto.idProdutoImagemProduto = Produto.idProduto INNER JOIN Promocao ON Promocao.idPromocao = PromocaoProduto.idPromocaoPromocaoProduto AND idPromocao ="+id);
+            rs = ps.executeQuery();
+            List<MostraProdutoImagem> list = new ArrayList<>();
+            while (rs.next()) {
+                list.add(new MostraProdutoImagem(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getInt(9)));
+            }
+            return list;
+        } catch (SQLException e) {
+            throw new Exception(e);
+        } finally {
+            ConnectionDAO.closeConnection(conn, ps, rs);
+        }
+    }
 
 }
