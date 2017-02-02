@@ -11,8 +11,9 @@
               rel="stylesheet" type="text/css">
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
               rel="stylesheet" type="text/css">
-        <link href="CSS.css" rel="stylesheet" type="text/css">
-        <title> Login</title>
+        <link href="/CSS.css" rel="stylesheet" type="text/css">
+        <link href="/Arquivo.css" rel="stylesheet" type="text/css">
+        <title> Meu Carrinho</title>
     </head>
 
     <body>
@@ -81,7 +82,7 @@
                             <input type="hidden" name="total" value="${requestScope.total}"/>
                             <%HttpSession sessao = request.getSession(false);%>
                             <input type="hidden" name="idUsua" value="<%out.print(sessao.getAttribute("idLoginUsuario").toString());%>">
-                            <input type="file" name="endereco"/>
+                            
                             <center><input type="submit" class="btn btn-success" value="Fechar Compra Agora" /></center>
                         </form>  
 
@@ -89,7 +90,5 @@
                 </div>
             </div>
         </div>
-
-
     </body>
 </html>

@@ -162,7 +162,7 @@ public class ServletCarrinho extends HttpServlet {
                 System.out.println("===============Valor: "+valor);
                 compraDAO.salvar(compra);
 //                 
-                //request.getRequestDispatcher("/TelaPrincipal.jsp").forward(request, response);
+                request.getRequestDispatcher("/TelaDeProdutos.jsp").forward(request, response);
             
             }
         } catch (Exception ex) {

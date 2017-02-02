@@ -11,7 +11,7 @@
               rel="stylesheet" type="text/css">
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
               rel="stylesheet" type="text/css">
-        <link href="CSS.css" rel="stylesheet" type="text/css">
+        <link href="/CSS.css" rel="stylesheet" type="text/css">
         <title> Cadasto de Produtos</title>
         <script>
             //Convertendo a imagem 1 em texto base 64;
@@ -70,7 +70,7 @@
             <h1 class="well">Cadastro de Produtos</h1>
             <div class="col-lg-12 well">
                 <div class="row">
-                    <form action="cadPro" method="post">
+                    <form action="cadPro" method="post"/>
                         <input type="hidden" name="cmd" value="saveAdd"/>
                         <input type="hidden" name="imgPro1" id="imagem1"/>
                         <input type="hidden" name="imgPro2" id="imagem2"/>
@@ -117,7 +117,7 @@
                                 </div>	
                                 <div class="col-sm-4 form-group">
                                     <label>3ª Imagem p/ Produto</label>
-                                    <input type="file" class="form-control"id="imagem3"onchange="convertImagemEmTexto3(this)">
+                                    <input type="file" class="form-control" id="imagem3" onchange="convertImagemEmTexto3(this)">
                                 </div>		
                             </div>
                             <input type="submit" class="btn btn-lg btn-success" value="Cadastrar">

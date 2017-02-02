@@ -19,6 +19,7 @@
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
               rel="stylesheet" type="text/css">
         <link href="/CSS.css" rel="stylesheet" type="text/css">
+        <link href="/Arquivo.css" rel="stylesheet" type="text/css">
         <title> Cadastro de Promoções</title>
     </head>
 
@@ -95,20 +96,19 @@
                     </form> 
                 </div>
 
-                <%                   
-                    List<PromocaoProduto> listaDePromocoesEProdutos = new ArrayList<PromocaoProduto>();
+                <%                    List<PromocaoProduto> listaDePromocoesEProdutos = new ArrayList<PromocaoProduto>();
                     PromocaoProdutoDAO buscaTudo = new PromocaoProdutoDAO();
                     listaDePromocoesEProdutos = buscaTudo.buscaProdutosEPromocoes();
                     request.setAttribute("listaDePromocoesEProdutos", listaDePromocoesEProdutos);
                 %>
-                <c:forEach var="lista" items="${requestScope.listaDePromocoesEProdutos}"> 
-                    <table style="width: 100%" class="table">
-                        <tr>
-                            <th> Nome da Promoção</th>
-                            <th> Nome do Produto</th>
-                            <th> Excluir </th>
-                        </tr>                                
 
+                <table style="width: 100%" class="table">
+                    <tr>
+                        <th> Nome da Promoção</th>
+                        <th> Nome do Produto</th>
+                        <th> Excluir </th>
+                    </tr>                                
+                    <c:forEach var="lista" items="${requestScope.listaDePromocoesEProdutos}">
                         <tr>
                             <td> ${lista.nomePromocao} </td> 
                             <td> ${lista.nomeProduto} </td>                           
@@ -120,8 +120,9 @@
                                 </form>   
                             </td>
                         </tr>
-                    </table> 
-                </c:forEach> 
+                    </c:forEach> 
+                </table> 
+
             </div>
         </div>
     </body>

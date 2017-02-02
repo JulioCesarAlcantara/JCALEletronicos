@@ -18,6 +18,7 @@
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
               rel="stylesheet" type="text/css">
         <link href="/CSS.css" rel="stylesheet" type="text/css">
+        <link href="/Arquivo.css" rel="stylesheet" type="text/css">
         <title> Adicionar ao Carrinho</title>
     </head>
 
@@ -48,7 +49,7 @@
         </div>
         <div class="section">
             <div class="container">
-                <div class="row col-md-3">   
+                <div class="row col-md-12">   
                     <c:forEach var="lista" items="${requestScope.ItensDeProdutos}">                      
                             <table style="width: 25%" class="table table-responsive">
                                 <tr>
@@ -57,10 +58,10 @@
                                         <div id="menu" >
                                             <form action="ItensDoCarrinho" method="get">
                                             <input type="hidden" name="idPro" value="${lista.idProduto}"/>
-                                            <big><big><big><big><big><big><big><big><big><big><h2> ${lista.nomeProduto} </h2>
+                                            <big><big><big><big><big><h2> ${lista.nomeProduto} </h2>
                                             <br><h4>${lista.descricaoProduto}</h4>
                                             <br><h3>R$ ${lista.precoProduto}</h3>
-                                            <br><input type="submit" class="btn btn-success col-lg-6 col-md-1 col-sm-2 col-xs-1" value="Adicionar no Carrinho" />                                            
+                                            <br><input type="submit" class="btn btn-lg" value="Adicionar ao Carrinho" />                                            
                                             </form>
                                         </div>
                                     </td> 

@@ -34,7 +34,7 @@ public class ServletLogin extends HttpServlet {
                 if (resultado) {
                     HttpSession session = request.getSession();
                     //Determinando o tempo da sessão;
-                    session.setMaxInactiveInterval(180);
+                    session.setMaxInactiveInterval(400);
                     
                     UsuarioDAO usuario = new UsuarioDAO();
                     String idLoginUsuario = Integer.toString(usuario.buscaIdUsuarioPeloLogin(email));

@@ -11,8 +11,8 @@
               rel="stylesheet" type="text/css">
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
               rel="stylesheet" type="text/css">
-        <link href="/CSS.css" rel="stylesheet" type="text/css">
-        <title> Cadasto de Clientes</title>
+        <link href="CSS.css" rel="stylesheet" type="text/css">
+        <title> Lista de Usuários do Sistema</title>
     </head>
 
     <body>
@@ -37,7 +37,6 @@
                 <br>
             </div>
         </div>
-
         <div id ="redor">
             <div class="container">
                 <h3 class="well">Listagem dos Usuários..</h3>

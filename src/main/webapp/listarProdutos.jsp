@@ -12,7 +12,8 @@
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
               rel="stylesheet" type="text/css">
         <link href="/CSS.css" rel="stylesheet" type="text/css">
-        <title> Listagem de Produtos</title>
+        <link href="/Arquivo.css" rel="stylesheet" type="text/css">
+        <title> Listagem de Produtos do Sistema</title>
     </head>
 
     <body>
@@ -52,14 +53,14 @@
                     <table style="width: 100%" class="table table-responsive">
                         <tr>
                             <th><center>Atualizar</center></th>
-                            <th><center> Nome </center> </th>
-                            <th><center>Excluir</center></th>
-                            </tr>
+                        <th><center> Nome </center> </th>
+                        <th><center>Excluir</center></th>
+                        </tr>
                         <c:forEach var="lista" items="${requestScope.listaProdutos}">
                             <tr>
                                 <td><center><a href="cadPro?cmd=update&id=${lista.idProduto}"> Atualizar</a></center></td>
-                                <td><center>${lista.nomeProduto}</center></td>
-                                <td><center><a href="cadPro?cmd=del&id=${lista.idProduto}"> Excluir</a></center></td>
+                            <td><center>${lista.nomeProduto}</center></td>
+                            <td><center><a href="cadPro?cmd=del&id=${lista.idProduto}"> Excluir</a></center></td>
                             </tr>
                         </c:forEach>
                     </table>

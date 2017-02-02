@@ -15,6 +15,8 @@
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+        <link href="/CSS.css" rel="stylesheet" type="text/css">
+        <link href="/Arquivo.css" rel="stylesheet" type="text/css">
         <title> Tela Principal</title>
     </head>
 
@@ -28,7 +30,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><span><h3> JCALEletronicos </h3></span></a>
+                    <a class="navbar-brand" href="#"><span><h3>JCALEletronicos </h3></span></a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -40,7 +42,7 @@
                                 sessao.invalidate();
                                 newSession = true;
                             } else {
-                                sessao.setMaxInactiveInterval(120);
+                                sessao.setMaxInactiveInterval(500);
                                 try {
                                     tipoUsuario = (String) sessao.getAttribute("usuarioTipo").toString();
                                 } catch (Exception ex) {
@@ -119,21 +121,14 @@
                                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Promoções
                                     <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
-                                    
-                                    
-                                    
-                                    <% PromocaoDAO promocoes = new PromocaoDAO();
-                                      List<Promocao> listaPromocoes = promocoes.listaTodos();
-                                     
-                        for (Promocao promo : listaPromocoes) {%>
-                        <li><a href="promocao?cmd=vitrinePromo&id=<%out.print(promo.getIdPromocao());%>"><%out.print(promo.getNomePromocao());%></a></li> 
-                        <%}%>
-                                    
-                                    
-                                    
-                                    
-                                    
 
+                                    <% PromocaoDAO 
+                                        promocoes = new PromocaoDAO();
+                                      List<Promocao> listaPromocoes = promocoes.listaTodos();
+
+                                        for (Promocao promo : listaPromocoes) {%>
+                                    <li><a href="promocao?cmd=vitrinePromo&id=<%out.print(promo.getIdPromocao());%>"><%out.print(promo.getNomePromocao());%></a></li> 
+                                        <%}%>
 
                                 </ul>
                             </div>    
@@ -183,10 +178,7 @@
 
 
             <%
-                    List<MostraProdutoImagem> 
-                
-                
-                lista = new ArrayList<MostraProdutoImagem>();
+                List<MostraProdutoImagem> lista = new ArrayList<MostraProdutoImagem>();
                 ProdutoDAO produto = new ProdutoDAO();
                 String pesquisa = request.getParameter("pesquisaPalavra");
 
