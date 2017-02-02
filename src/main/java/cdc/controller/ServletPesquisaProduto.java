@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cdc.controller;
 
 import cdc.util.DAO;
@@ -33,7 +28,7 @@ public class ServletPesquisaProduto extends HttpServlet {
         }
 
         try {
-            RequestDispatcher rd = null; //setando o objeto "despachador
+           // RequestDispatcher rd = null; //setando o objeto "despachador
             if (cmd.equalsIgnoreCase("pesquisa")) {
                 System.out.println(request.getParameter("pesquisaPalavra"));
                 getServletContext().getRequestDispatcher("/TelaDeProdutos.jsp").forward(request, response);

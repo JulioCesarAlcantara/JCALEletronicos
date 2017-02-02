@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cdc.controller;
 
 import br.com.caelum.stella.boleto.Banco;
@@ -20,13 +15,11 @@ import cdc.model.ClienteDAO;
 import cdc.model.Compra;
 import cdc.model.CompraDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -150,10 +143,10 @@ public class ServletCarrinho extends HttpServlet {
                 GeradorDeBoleto gerador = new GeradorDeBoleto(boleto);
 
                 // Para gerar um boleto em PDF  
-                gerador.geraPDF("/home/cesar/BancoDoBrasil1asl2332.pdf");
+                gerador.geraPDF("/home/cesar/BoletoBancoDoBrasil.pdf");
 
                 // Para gerar um boleto em PNG  
-                gerador.geraPNG("/home/cesar/BancoDoBrasil1223232.png");
+                gerador.geraPNG("/home/cesar/BoletoBancoDoBrasil.png");
 
                 compra.setIdUsuarioCompra(id);
                 compra.setValor(valor);

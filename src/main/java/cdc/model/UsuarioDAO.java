@@ -17,7 +17,7 @@ public class UsuarioDAO implements DAO {
         try {
             this.conn = ConnectionDAO.getConnection();
         } catch (Exception e) {
-            throw new Exception("Erro:\n" + e.getMessage());
+            throw new Exception("Erro: " + e.getMessage());
         }
     }
 
