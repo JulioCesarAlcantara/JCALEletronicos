@@ -51,31 +51,31 @@
                             <div class="row">
                                 <div class="col-sm-6 form-group">
                                     <label>Primeiro Nome</label>
-                                    <input type="text" placeholder="Entre com 1º nome aqui .." class="form-control" name="primeiroNomeUsuario">
+                                    <input type="text" placeholder="Entre com 1º nome aqui .." required class="form-control" name="primeiroNomeUsuario">
                                 </div>
                                 <div class="col-sm-6 form-group">
                                     <label>Segundo Nome</label>
-                                    <input type="text" placeholder="Entre com 2º nome aqui .." class="form-control" name="segundoNomeUsuario">
+                                    <input type="text" placeholder="Entre com 2º nome aqui .." required class="form-control" name="segundoNomeUsuario">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6 form-group">
                                     <label>Telefone</label>
-                                    <input type="text" placeholder="Entre com Telefone aqui.." class="form-control" name="telefoneUsuario">
+                                    <input type="text" placeholder="Entre com Telefone aqui.." required class="form-control" name="telefoneUsuario">
                                 </div>		
                                 <div class="col-sm-6 form-group">
                                     <label>Email</label>
-                                    <input type="text" placeholder="Entre com Email aqui.." class="form-control" name="emailUsuario">
+                                    <input type="text" placeholder="Entre com Email aqui.." required class="form-control" name="emailUsuario">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-4 form-group">
                                     <label>Data de Nascimento</label>
-                                    <input type="text" class="form-control" placeholder="Entre com a Data de Nascimento" name="dataNascimentoUsuario">
+                                    <input type="text" class="form-control" placeholder="Entre com a Data de Nascimento" required name="dataNascimentoUsuario">
                                 </div>		
                                 <div class="col-sm-4 form-group">
                                     <label>Sexo</label>
-                                    <select name="sexoUsuario" class="form-control selectpicker" >
+                                    <select name="sexoUsuario" required class="form-control selectpicker" >
                                         <option value="-1" >Escolha seu sexo</option>
                                         <option value="m" >Masculino</option>
                                         <option value="f" >Feminino</option>
@@ -83,7 +83,7 @@
                                 </div>	
                                 <div class="col-sm-4 form-group">
                                     <label>Tipo de Usuário</label>
-                                    <select name="tipoUsuario" class="form-control selectpicker" >
+                                    <select name="tipoUsuario" required class="form-control selectpicker" >
                                         <option value="-1" >Escolha o tipo do usuário</option>
                                         <option value="a" >Administrador</option>
                                         <option value="g" >Gerente</option>
@@ -93,14 +93,11 @@
                                 </div>
                             </div>
                             <div class="row">
-
                                 <div class="col-sm-4 form-group">
                                     <label>Defina uma Senha</label>
-                                    <input type="password" placeholder="Entre com sua nova senha aqui.." class="form-control" name="senhaUsuario">
+                                    <input type="password" placeholder="Entre com sua nova senha aqui.." required class="form-control" name="senhaUsuario">
                                 </div>	
-
                             </div>
-
                             <input type="submit" class="btn btn-lg btn-success" value="Cadastrar">
                         </div>
                     </form> 

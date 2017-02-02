@@ -54,12 +54,19 @@
                         <tr>
                             <th><center>Atualizar</center></th>
                         <th><center> Nome </center> </th>
+                        <th><center> Tipo </center> </th>
                         <th><center>Excluir</center></th>
                         </tr>
                         <c:forEach var="lista" items="${requestScope.listaProdutos}">
                             <tr>
                                 <td><center><a href="cadPro?cmd=update&id=${lista.idProduto}"> Atualizar</a></center></td>
                             <td><center>${lista.nomeProduto}</center></td>
+                                <c:if test="${lista.categoriaProduto eq 'ac'}">
+                                <td><center>Acessório</center></td>
+                                </c:if>
+                                <c:if test="${lista.categoriaProduto eq 'ap'}">
+                                <td><center>Aparelho</center></td>
+                                </c:if>
                             <td><center><a href="cadPro?cmd=del&id=${lista.idProduto}"> Excluir</a></center></td>
                             </tr>
                         </c:forEach>
