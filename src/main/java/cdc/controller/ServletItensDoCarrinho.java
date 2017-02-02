@@ -21,13 +21,10 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 
             String idProduto = request.getParameter("idPro");
             String idUsuario = session.getAttribute("idLoginUsuario").toString();
-            System.out.println("ID PRODUTO: " + idProduto);
-            System.out.println("ID USUARIO: " + idUsuario);
 
             if (!idUsuario.isEmpty()) {
                 CarrinhoDAO itensDoCarrinho = new CarrinhoDAO();
                 itensDoCarrinho.salvarProdutoNoCarrinho(idProduto, idUsuario);
-
                 request.getRequestDispatcher("/TelaDeProdutos.jsp").forward(request, response);
             } else {
                 request.getRequestDispatcher("/LoginDeUsuarios.jsp").forward(request, response);

@@ -5,18 +5,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-/**
- *
- * @author cesar
- */
  
 public class ServletPesquisaProduto extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String cmd = request.getParameter("cmd");
-        System.out.println("cmd: " + cmd);
         
         if (cmd == null) {
             cmd = "principal";
@@ -25,7 +19,6 @@ public class ServletPesquisaProduto extends HttpServlet {
         try {
             
             if (cmd.equalsIgnoreCase("pesquisa")) {
-                System.out.println(request.getParameter("pesquisaPalavra"));
                 getServletContext().getRequestDispatcher("/TelaDeProdutos.jsp").forward(request, response);
             } else if (cmd.equalsIgnoreCase("pesquisaAc")){
                 getServletContext().getRequestDispatcher("/TelaDeAcessorios.jsp").forward(request, response);

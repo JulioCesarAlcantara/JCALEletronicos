@@ -78,7 +78,7 @@ public class PromocaoProdutoDAO implements DAO {
             ps.setInt(2, PromoPro.getIdPromocaoPromocaoProduto());
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new Exception("Erro ao inserir promoção de um produto:\n" + e);
+            throw new Exception("Erro ao inserir:\n" + e);
         }
     }
 
@@ -213,7 +213,7 @@ public class PromocaoProdutoDAO implements DAO {
 
         try {
             conn = this.conn;
-            ps = conn.prepareStatement("select * from Produto");
+            ps = conn.prepareStatement("SELECT * FROM Produto");
             rs = ps.executeQuery();
             List<Produto> list = new ArrayList<>();
             while (rs.next()) {

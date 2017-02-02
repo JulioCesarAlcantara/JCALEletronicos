@@ -22,8 +22,6 @@ public class ServletTelaDeProdutos extends HttpServlet {
             ProdutoDAO pro = new ProdutoDAO();
 
             ItensDeProdutos = pro.listaProdutosParaCompra(idProduto);
-            System.out.println("====== LISTA =====");
-            System.out.println(ItensDeProdutos);
             request.setAttribute("ItensDeProdutos", ItensDeProdutos);
             request.getRequestDispatcher("/AdicionarAoCarrinho.jsp").forward(request, response);
 

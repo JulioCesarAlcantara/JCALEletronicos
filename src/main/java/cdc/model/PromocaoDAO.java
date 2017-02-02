@@ -66,7 +66,7 @@ public class PromocaoDAO implements DAO {
         }
         
         try {
-            String SQL = "DELETE FROM Promocao where idPromocao = ?";
+            String SQL = "DELETE FROM Promocao WHERE idPromocao = ?";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.setInt(1, promo.getIdPromocao());
@@ -119,22 +119,22 @@ public class PromocaoDAO implements DAO {
         Connection conn = null;
         ResultSet rs = null;
         if (cat == null) {
-            throw new Exception("O valor passado não pode ser nulo");
+            throw new Exception("O valor passado não pode ser nulo.");
         }
         try {
             conn = this.conn;
-            String SQL = "select * from Promocao ";
+            String SQL = "SELECT * FROM Promocao ";
             String where = "";
             boolean checa = false;
             if (cat.getIdPromocao()!= 0 || cat.getNomePromocao()!= null || cat.getStatusPromocao() != null) {
-                where = "where ";
+                where = "WHERE ";
                 if (cat.getIdPromocao()!= 0) {
                     where += "idPromocao=? ";
                     checa = true;
                 }
                 if(cat.getNomePromocao() != null){
                     if (checa) {
-                        where += "and";
+                        where += "AND";
                     }
                     where +="nomePromocao=? ";
                     checa=true;
@@ -142,7 +142,7 @@ public class PromocaoDAO implements DAO {
                 
                 if (cat.getStatusPromocao()!= null) {
                     if (checa) {
-                        where += "and";
+                        where += "AND";
                     }
                     where += " statusPromocao=? ";
                     checa = true;

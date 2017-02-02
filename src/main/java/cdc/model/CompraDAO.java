@@ -50,7 +50,7 @@ public class CompraDAO implements DAO {
         }
 
         try {
-            String sql = "INSERT INTO Compra (valorCompra, freteCompra, idUsuarioCompra) values (?,?,?)";
+            String sql = "INSERT INTO Compra (valorCompra, freteCompra, idUsuarioCompra) VALUES (?,?,?)";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             ps.setFloat(1, com.getValor());

@@ -32,7 +32,7 @@ public class ProdutoDAO implements DAO {
         }
 
         try {
-            String sql = "update Produto set nomeProduto = ?, precoProduto = ?, descricaoProduto=?, categoriaProduto = ?, quantidadeEstoqueProduto=? where idProduto = ?";
+            String sql = "UPDATE Produto SET nomeProduto = ?, precoProduto = ?, descricaoProduto=?, categoriaProduto = ?, quantidadeEstoqueProduto=? WHERE idProduto = ?";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             ps.setString(1, pro.getNomeProduto());
@@ -64,13 +64,13 @@ public class ProdutoDAO implements DAO {
             ps.setInt(1, com.getIdProduto());
             ps.executeUpdate();
 
-            sql = "delete from ImagemProduto where idProdutoImagemProduto = ?";
+            sql = "DELETE FROM ImagemProduto WHERE idProdutoImagemProduto = ?";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             ps.setInt(1, com.getIdProduto());
             ps.executeUpdate();
 
-            sql = "delete from Carrinho where idProdutoCarrinho = ?";
+            sql = "DELETE FROM Carrinho WHERE idProdutoCarrinho = ?";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             ps.setInt(1, com.getIdProduto());
@@ -125,11 +125,11 @@ public class ProdutoDAO implements DAO {
         }
         try {
             conn = this.conn;
-            String SQL = "select * from Produto ";
+            String SQL = "SELECT * FROM Produto ";
             String where = "";
             boolean checa = false;
             if (com.getIdProduto() != 0) {
-                where = "where ";
+                where = "WHERE ";
                 if (com.getIdProduto() != 0) {
                     where += "idProduto=? ";
                     checa = true;
@@ -278,8 +278,6 @@ public class ProdutoDAO implements DAO {
         }
     }
 
-
-
     public List listaProdutosParaCompra(String id) throws Exception {
         PreparedStatement ps = null;
         Connection conn = null;
@@ -317,7 +315,7 @@ public class ProdutoDAO implements DAO {
 
         try {
             conn = this.conn;
-            ps = conn.prepareStatement("SELECT * from Produto");
+            ps = conn.prepareStatement("SELECT * FROM Produto");
             rs = ps.executeQuery();
 
             List lista = new ArrayList();

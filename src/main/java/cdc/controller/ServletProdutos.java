@@ -4,7 +4,6 @@ import cdc.model.ImagemProduto;
 import cdc.model.ImagemProdutoDAO;
 import cdc.model.Produto;
 import cdc.model.ProdutoDAO;
-import cdc.util.DAO;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -18,7 +17,6 @@ public class ServletProdutos extends HttpServlet {
             throws ServletException, IOException {
 
         String cmd = request.getParameter("cmd");
-        System.out.println("cmd: " + cmd);
 
         request.setAttribute("adminEmail", getServletConfig().getInitParameter("adminEmail"));
 
@@ -27,8 +25,6 @@ public class ServletProdutos extends HttpServlet {
         }
 
         try {
-            //dao = new ProdutoDAO();
-            //RequestDispatcher rd = null; //setando o objeto "despachador
             ImagemProdutoDAO imageDAO = new ImagemProdutoDAO();
             ProdutoDAO produto = new ProdutoDAO();
 
@@ -36,27 +32,15 @@ public class ServletProdutos extends HttpServlet {
                 String nomeProduto = request.getParameter("nome");
                 String descricaoProduto = request.getParameter("descricao");
                 String precoProduto = request.getParameter("preco");
-                System.out.println("aqui ! ====");
                 //convertendo preço em float; 
                 float preco = Float.parseFloat(precoProduto);
 
-                System.out.println("aqui 2");
                 String categoria = request.getParameter("categoria");
                 String qntProduto = request.getParameter("quantidade");
                 String imagem1 = request.getParameter("imgPro1");
                 String imagem2 = request.getParameter("imgPro2");
                 String imagem3 = request.getParameter("imgPro3");
-
-                //testando valores que vem do jsp;
-                System.out.println("1" + nomeProduto);
-                System.out.println("2" + descricaoProduto);
-                System.out.println("3" + preco);
-                System.out.println("4" + categoria);
-                System.out.println("5" + qntProduto);
-                System.out.println("6" + imagem1);
-                System.out.println("7" + imagem2);
-                System.out.println("8" + imagem3);
-
+                
                 //convertendo a qntd do produto para int; 
                 int quantidade = Integer.parseInt(qntProduto);
 
@@ -65,8 +49,7 @@ public class ServletProdutos extends HttpServlet {
 
                 //busca o id do produto add, para add imagem; 
                 int idProduto = produto.buscaIdDoProdutoPeloNome(nomeProduto);
-
-                System.out.println("idProduto: " + idProduto);
+               
                 ImagemProduto imgPro = new ImagemProduto(imagem1, imagem2, imagem3, idProduto);
                 imageDAO.salvar(imgPro);
                 getServletContext().getRequestDispatcher("/cadPro?cmd=listar").forward(request, response);
@@ -83,6 +66,7 @@ public class ServletProdutos extends HttpServlet {
                 String nomeProduto = request.getParameter("nome");
                 String descricaoProduto = request.getParameter("descricao");
                 String precoProduto = request.getParameter("preco");
+                
                 //convertendo preço em float; 
                 float preco = Float.parseFloat(precoProduto);
                 String categoria = request.getParameter("categoria");

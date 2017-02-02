@@ -1,7 +1,6 @@
 package cdc.controller;
 
 import cdc.model.UsuarioDAO;
-import cdc.util.DAO;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +14,7 @@ public class ServletLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String cmd = request.getParameter("cmd");
-        DAO dao;
+        
         request.setAttribute("adminEmail", getServletConfig().getInitParameter("adminEmail"));
         
         if (cmd == null) {

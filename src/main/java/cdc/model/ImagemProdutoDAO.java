@@ -30,7 +30,7 @@ public class ImagemProdutoDAO implements DAO {
         }
 
         try {
-            String sql = "UPDATE ImagemProduto ImagemDeProduto SET imagem1=?,imagem2=?,imagem3=?) WHERE idProduto = ?)";
+            String sql = "UPDATE ImagemProduto SET imagem1=?,imagem2=?,imagem3=?) WHERE idProduto = ?)";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             ps.setString(1, imagemProdutp.getImagem1());
@@ -67,7 +67,7 @@ public class ImagemProdutoDAO implements DAO {
         PreparedStatement ps = null;
 
         if (ip == null) {
-            throw new Exception("O valor passado não pode ser nulo/ The value passed cannot be null");
+            throw new Exception("O valor passado não pode ser nulo.");
         }
 
         try {
@@ -95,7 +95,7 @@ public class ImagemProdutoDAO implements DAO {
         }
 
         try {
-            String sql = "delete from ImagemDeProduto where idProduto = ?";
+            String sql = "DELETE FROM ImagemDeProduto WHERE idProduto = ?";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             ps.setInt(1, id);

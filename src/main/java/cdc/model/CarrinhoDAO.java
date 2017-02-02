@@ -35,7 +35,7 @@ public class CarrinhoDAO implements DAO {
             throw new Exception("O valor passado não pode ser nulo!");
         }
         try {
-            String sql = "delete from ItemCompra where idCarrinho = ?";
+            String sql = "DELETE FROM ItemCompra WHERE idCarrinho = ?";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             ps.setInt(1, ic.getIdCarrinho());
@@ -122,7 +122,7 @@ public class CarrinhoDAO implements DAO {
         }
 
         try {
-            String sql = "delete from ItemCompra where idProdutoItemCompra = ?";
+            String sql = "DELETE FROM ItemCompra WHERE idProdutoItemCompra = ?";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             ps.setInt(1, id);

@@ -25,11 +25,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author cesar
- */
-
 public class ServletCarrinho extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -44,18 +39,14 @@ public class ServletCarrinho extends HttpServlet {
         try {
 
             String idUsuario = session.getAttribute("idLoginUsuario").toString();
-            System.out.println("========" + idUsuario);
 
             if (!idUsuario.isEmpty() && !cmd.equalsIgnoreCase("del") && !cmd.equalsIgnoreCase("finalizaCompra")) {
 
                 List<Carrinho> listaDeProdutosNoCarrinho = new ArrayList<Carrinho>();
                 CarrinhoDAO carrinho = new CarrinhoDAO();
                 listaDeProdutosNoCarrinho = carrinho.listaIntensDoCarrinho(idUsuario);
-               float total = carrinho.precoTotalItensDoCarrinho(idUsuario);
-                
+                float total = carrinho.precoTotalItensDoCarrinho(idUsuario);
                 request.setAttribute("total", total);
-                
-                System.out.println("lista de produtos do carrinho: " + listaDeProdutosNoCarrinho);
 
                 request.setAttribute("listaDeProdutosNoCarrinho", listaDeProdutosNoCarrinho);
                 request.getRequestDispatcher("/Carrinho.jsp").forward(request, response);
@@ -65,7 +56,7 @@ public class ServletCarrinho extends HttpServlet {
                 CarrinhoDAO carrinho = new CarrinhoDAO();
                 carrinho.excluirItemDoCarrinho(id);
                 response.sendRedirect("Carrinho?");
-            } else if (cmd.equalsIgnoreCase("finalizaCompra")){
+            } else if (cmd.equalsIgnoreCase("finalizaCompra")) {
                 CompraDAO compraDAO = new CompraDAO();
                 Compra compra = new Compra();
                 Integer id = Integer.parseInt(request.getParameter("idUsua"));
@@ -85,7 +76,6 @@ public class ServletCarrinho extends HttpServlet {
                     clienteModel.setEnderecoCliente(cliente.getEnderecoCliente());
                     clienteModel.setCpfCliente(cliente.getCpfCliente());
                 }
-
 
                 int year = 2017;
                 int month = 03;
@@ -123,7 +113,7 @@ public class ServletCarrinho extends HttpServlet {
 
                 //Quem paga o boleto
                 Pagador pagador = Pagador.novoPagador()
-                        .comNome(clienteModel.getPrimeiroNomeCliente()+" "+clienteModel.getSegundoNomeCliente())
+                        .comNome(clienteModel.getPrimeiroNomeCliente() + " " + clienteModel.getSegundoNomeCliente())
                         .comDocumento(clienteModel.getCpfCliente())
                         .comEndereco(enderecoPagador);
 
@@ -146,16 +136,9 @@ public class ServletCarrinho extends HttpServlet {
 
                 // Para gerar um boleto em PNG  
                 gerador.geraPNG("/home/cesar/BoletoBancoDoBrasil.png");
-
-                compra.setIdUsuarioCompra(id);
-                compra.setValor(valor);
-                compra.setFrete(4);
-                System.out.println("===============ID: "+id);
-                System.out.println("===============Valor: "+valor);
-                compraDAO.salvar(compra);
-//                 
-                request.getRequestDispatcher("/TelaDeProdutos.jsp").forward(request, response);
             
+                request.getRequestDispatcher("/TelaDeProdutos.jsp").forward(request, response);
+
             }
         } catch (Exception ex) {
             request.getRequestDispatcher("/LoginDeUsuarios.jsp").forward(request, response);

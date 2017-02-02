@@ -63,7 +63,7 @@ public class UsuarioDAO implements DAO {
             throw new Exception("O valor passado não pode ser nulo!");
         }
         try {
-            String sql = "delete from Usuario where idUsuario = ?";
+            String sql = "DELETE FROM Usuario WHERE idUsuario = ?";
             conn = this.conn;
             ps = conn.prepareStatement(sql);
             ps.setInt(1, usu.getId());
@@ -83,7 +83,7 @@ public class UsuarioDAO implements DAO {
 
         try {
             conn = this.conn;
-            ps = conn.prepareStatement("select * from Usuario where tipoUsuario <> 'c'");
+            ps = conn.prepareStatement("SELECT * FROM Usuario WHERE tipoUsuario <> 'c'");
             rs = ps.executeQuery();
             List<Usuario> list = new ArrayList<Usuario>();
             while (rs.next()) {
@@ -106,7 +106,7 @@ public class UsuarioDAO implements DAO {
 
         try {
             conn = this.conn;
-            ps = conn.prepareStatement("select * from Usuario where idUsuario = ?");
+            ps = conn.prepareStatement("SELECT * FROM Usuario WHERE idUsuario = ?");
             ps.setInt(1, usu.getId());
             rs = ps.executeQuery();
             List<Usuario> list = new ArrayList<Usuario>();
@@ -129,7 +129,7 @@ public class UsuarioDAO implements DAO {
         PreparedStatement ps = null;
 
         if (usua == null) {
-            throw new Exception("O valor passado não pode ser nulo/ The value passed cannot be null");
+            throw new Exception("O valor passado não pode ser nulo.");
         }
 
         try {
@@ -154,15 +154,6 @@ public class UsuarioDAO implements DAO {
         }
     }
 
-    /**
-     * Este método verifica se o login e senha do usuário existem. Caso exista,
-     * o servlet inicia a sessão, caso não, ele redireciona pro login;
-     *
-     * @param email do usuário login;
-     * @param senha do usuário;
-     * @return true se existir ou false se não existir;
-     * @throws Exception
-     */
     public boolean verificaLoginUsuario(String email, String senha) throws Exception {
         String username = email;
         String password = senha;
@@ -191,14 +182,6 @@ public class UsuarioDAO implements DAO {
         }
     }
 
-    /**
-     * Este método busca o id do usuário pelo login para realizar a persistência
-     * no bd na tabelas de produto.
-     *
-     * @param loginUsuario do usuário;
-     * @return Integer com o valor do id do Usuario;
-     * @throws Exception
-     */
     public Integer buscaIdUsuarioPeloLogin(String loginUsuario) throws Exception {
         PreparedStatement ps = null;
         Connection conn = null;

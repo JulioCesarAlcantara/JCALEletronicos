@@ -30,7 +30,6 @@ public class ServletPromocao extends HttpServlet {
             if (cmd.equalsIgnoreCase("saveAdd")) {
                 String nomePromocao = request.getParameter("nomePromo");
                 String dataInicioPromocao = request.getParameter("dataIni");
-                System.out.println("data começo: " + dataInicioPromocao);
                 String dataFimPromocao = request.getParameter("dataFim");
 
                 Float descontoPromocao = Float.parseFloat(request.getParameter("descontoPromo"));

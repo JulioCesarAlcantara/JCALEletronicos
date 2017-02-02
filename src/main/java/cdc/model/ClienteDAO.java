@@ -172,7 +172,7 @@ public class ClienteDAO implements DAO {
         Connection conn = ConnectionDAO.getConnection();
 
         if (cli == null) {
-            throw new Exception("O valor designado para o cliente não pode ser nulo. Por favor informe valores.");
+            throw new Exception("O valor passado não pode ser nulo. Por favor informe valores.");
         }
 
         try {
