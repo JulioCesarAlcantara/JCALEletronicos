@@ -86,8 +86,6 @@
                                             <option value="m" >Masculino</option>
                                             <option value="f" selected>Feminino</option>
                                         </c:if> 
-                                            
-                                            
                                     </select>
                                 </div>	
                                 <div class="col-sm-4 form-group">
@@ -118,9 +116,7 @@
                                     <label>Defina uma Senha</label>
                                     <input type="password" placeholder="Entre com sua nova senha aqui.." class="form-control" name="senhaCliente" value="${listaClientes.get(0).senhaCliente}" >
                                 </div>	
-
                             </div>
-
                             <input type="submit" class="btn btn-lg btn-success" value="Alterar">
                         </div>
                     </form> 

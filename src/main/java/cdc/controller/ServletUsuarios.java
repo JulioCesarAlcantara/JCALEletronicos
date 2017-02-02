@@ -22,14 +22,13 @@ public class ServletUsuarios extends HttpServlet {
         DAO dao;
 
         request.setAttribute("adminEmail", getServletConfig().getInitParameter("adminEmail"));
-        //setando o valor default do cmd
+        
         if (cmd == null) {
             cmd = "principal";
         }
 
         try {
             dao = new UsuarioDAO();
-            RequestDispatcher rd = null; 
             if (cmd.equalsIgnoreCase("saveAdd")) {
                 String primeiroNomeUsuario = request.getParameter("primeiroNomeUsuario");
                 String segundoNomeUsuario = request.getParameter("segundoNomeUsuario");
@@ -89,7 +88,6 @@ public class ServletUsuarios extends HttpServlet {
                 dao.excluir(usuario);
                 getServletContext().getRequestDispatcher("/usuarios?cmd=listar").forward(request, response);
             } 
-            
 
         } catch (Exception e) {
             e.printStackTrace();

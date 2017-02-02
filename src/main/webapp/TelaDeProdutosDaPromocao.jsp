@@ -17,7 +17,7 @@
         <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
         <link href="/CSS.css" rel="stylesheet" type="text/css">
         <link href="/Arquivo.css" rel="stylesheet" type="text/css">
-        <title> Tela de Produtos</title>
+        <title>Tela de Produtos nas Promoções</title>
     </head>
 
     <body>

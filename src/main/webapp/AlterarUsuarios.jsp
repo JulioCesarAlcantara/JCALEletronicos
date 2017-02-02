@@ -13,7 +13,7 @@
               rel="stylesheet" type="text/css">
         <link href="/CSS.css" rel="stylesheet" type="text/css">
         <link href="/Arquivo.css" rel="stylesheet" type="text/css">
-        <title> Alteração de Usuários</title>
+        <title> Alteração de Dados do Usuários</title>
     </head>
 
     <body>

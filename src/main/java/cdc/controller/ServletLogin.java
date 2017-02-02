@@ -29,9 +29,9 @@ public class ServletLogin extends HttpServlet {
                 
                 String email = request.getParameter("userEmail");
                 String senha = request.getParameter("userPassword");
-                boolean resultado = usu.verificaLoginUsuario(email, senha);
+                boolean logou = usu.verificaLoginUsuario(email, senha);
                 
-                if (resultado) {
+                if (logou) {
                     HttpSession session = request.getSession();
                     //Determinando o tempo da sessão;
                     session.setMaxInactiveInterval(400);

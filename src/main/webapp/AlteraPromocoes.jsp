@@ -84,7 +84,6 @@
                                             <option value="I" selected="selected" >Inativa</option>
                                         </c:if>
                                     </select>
-
                                 </div>	
                             </div>
                             <input type="submit" class="btn btn-lg btn-success" value="Salvar Alterações">

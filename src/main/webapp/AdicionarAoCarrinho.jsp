@@ -1,9 +1,3 @@
-<%-- 
-    Document   : Carrinho
-    Created on : 26/01/2017, 23:53:04
-    Author     : cesar
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

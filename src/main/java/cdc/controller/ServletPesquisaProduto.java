@@ -1,8 +1,6 @@
 package cdc.controller;
 
-import cdc.util.DAO;
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,16 +17,13 @@ public class ServletPesquisaProduto extends HttpServlet {
             throws ServletException, IOException {
         String cmd = request.getParameter("cmd");
         System.out.println("cmd: " + cmd);
-        DAO dao;
-
-        request.setAttribute("adminEmail", getServletConfig().getInitParameter("adminEmail"));
-        //setando o valor default do cmd
+        
         if (cmd == null) {
             cmd = "principal";
         }
 
         try {
-           // RequestDispatcher rd = null; //setando o objeto "despachador
+            
             if (cmd.equalsIgnoreCase("pesquisa")) {
                 System.out.println(request.getParameter("pesquisaPalavra"));
                 getServletContext().getRequestDispatcher("/TelaDeProdutos.jsp").forward(request, response);

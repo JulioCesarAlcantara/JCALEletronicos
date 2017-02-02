@@ -13,7 +13,7 @@
               rel="stylesheet" type="text/css">
         <link href="/CSS.css" rel="stylesheet" type="text/css">
         <link href="/Arquivo.css" rel="stylesheet" type="text/css">
-        <title> Meu Carrinho</title>
+        <title>Meu Carrinho</title>
     </head>
 
     <body>
@@ -45,7 +45,6 @@
             <div class="container">
                 <div class="row">                   
                     <div>  
-
                         <table style="width: 100%" class="table">
                             <tr>
                                 <th> Nome do Produto</th>

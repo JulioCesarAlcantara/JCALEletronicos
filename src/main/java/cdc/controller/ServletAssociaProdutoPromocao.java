@@ -16,16 +16,13 @@ public class ServletAssociaProdutoPromocao extends HttpServlet {
             throws ServletException, IOException {
         
         String cmd = request.getParameter("cmd");
-        PromocaoProdutoDAO dao;
 
-        request.setAttribute("adminEmail", getServletConfig().getInitParameter("adminEmail"));
         if (cmd == null) {
             cmd = "principal";
         }
 
         try {
-            dao = new PromocaoProdutoDAO();
-            RequestDispatcher rd = null; 
+            
             if (cmd.equalsIgnoreCase("saveAdd")) {
                 Integer idPromocao = Integer.parseInt(request.getParameter("idPromo"));
                 String[] idProduto = request.getParameterValues("idProd");
@@ -33,7 +30,8 @@ public class ServletAssociaProdutoPromocao extends HttpServlet {
                 for (String produto : idProduto) {
                     id = Integer.parseInt(produto);
                     PromocaoProduto prodPromo = new PromocaoProduto(id, idPromocao);
-                    dao.salvar(prodPromo);
+                    PromocaoProdutoDAO pp = new PromocaoProdutoDAO();
+                    pp.salvar(prodPromo);
                 }   
                 getServletContext().getRequestDispatcher("/AssociaProdutoNaPromocao.jsp").forward(request, response);
             } else if (cmd.equalsIgnoreCase("del")) {

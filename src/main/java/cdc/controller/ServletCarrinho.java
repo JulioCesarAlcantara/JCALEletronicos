@@ -29,7 +29,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author cesar
  */
-//@WebServlet(name = "ServletCarrinho", urlPatterns = {"/ServletCarrinho"})
+
 public class ServletCarrinho extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -86,8 +86,7 @@ public class ServletCarrinho extends HttpServlet {
                     clienteModel.setCpfCliente(cliente.getCpfCliente());
                 }
 
-//                Date date = null;
-//                LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
                 int year = 2017;
                 int month = 03;
                 int day = 02;

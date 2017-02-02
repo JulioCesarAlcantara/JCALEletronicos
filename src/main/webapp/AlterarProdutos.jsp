@@ -86,7 +86,6 @@
                                     <input type="text" placeholder="Quantidade deste produto.." required class="form-control" name="quantidade" value="${listaProdutos.get(0).quantidadeEstoqueProduto}">
                                 </div>
                             </div>	
-
                             <input type="submit" class="btn btn-lg btn-success" value="Alterar">
                         </div>
                     </form> 

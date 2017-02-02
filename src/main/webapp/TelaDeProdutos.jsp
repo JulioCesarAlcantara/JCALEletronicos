@@ -122,8 +122,7 @@
                                     <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
 
-                                    <% PromocaoDAO 
-                                        promocoes = new PromocaoDAO();
+                                    <% PromocaoDAO promocoes = new PromocaoDAO();
                                       List<Promocao> listaPromocoes = promocoes.listaTodos();
 
                                         for (Promocao promo : listaPromocoes) {%>

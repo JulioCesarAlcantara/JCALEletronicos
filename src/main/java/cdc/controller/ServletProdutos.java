@@ -18,9 +18,7 @@ public class ServletProdutos extends HttpServlet {
             throws ServletException, IOException {
 
         String cmd = request.getParameter("cmd");
-
         System.out.println("cmd: " + cmd);
-        DAO dao;
 
         request.setAttribute("adminEmail", getServletConfig().getInitParameter("adminEmail"));
 
@@ -49,6 +47,7 @@ public class ServletProdutos extends HttpServlet {
                 String imagem2 = request.getParameter("imgPro2");
                 String imagem3 = request.getParameter("imgPro3");
 
+                //testando valores que vem do jsp;
                 System.out.println("1" + nomeProduto);
                 System.out.println("2" + descricaoProduto);
                 System.out.println("3" + preco);
@@ -70,15 +69,15 @@ public class ServletProdutos extends HttpServlet {
                 System.out.println("idProduto: " + idProduto);
                 ImagemProduto imgPro = new ImagemProduto(imagem1, imagem2, imagem3, idProduto);
                 imageDAO.salvar(imgPro);
-
                 getServletContext().getRequestDispatcher("/cadPro?cmd=listar").forward(request, response);
-            } else if (cmd.equalsIgnoreCase("update")) {
+
+            } else if (cmd.equalsIgnoreCase("del")) {
                 Integer id = Integer.parseInt(request.getParameter("id"));
                 Produto prod = new Produto();
                 prod.setIdProduto(id);
-                List listaProdutos = produto.procura(prod);
-                request.setAttribute("listaProdutos", listaProdutos);
-                getServletContext().getRequestDispatcher("/AlterarProdutos.jsp").forward(request, response);
+                produto.excluir(prod);
+                getServletContext().getRequestDispatcher("/cadPro?cmd=listar").forward(request, response);
+
             } else if (cmd.equalsIgnoreCase("saveUpdate")) {
                 Integer idProduto = Integer.parseInt(request.getParameter("id"));
                 String nomeProduto = request.getParameter("nome");
@@ -94,18 +93,20 @@ public class ServletProdutos extends HttpServlet {
 
                 Produto produtoMontado = new Produto(idProduto, nomeProduto, preco, descricaoProduto, categoria, quantidade);
                 produto.atualizar(produtoMontado);
-
                 getServletContext().getRequestDispatcher("/cadPro?cmd=listar").forward(request, response);
+
+            } else if (cmd.equalsIgnoreCase("update")) {
+                Integer id = Integer.parseInt(request.getParameter("id"));
+                Produto prod = new Produto();
+                prod.setIdProduto(id);
+                List listaProdutos = produto.procura(prod);
+                request.setAttribute("listaProdutos", listaProdutos);
+                getServletContext().getRequestDispatcher("/AlterarProdutos.jsp").forward(request, response);
+
             } else if (cmd.equalsIgnoreCase("listar")) {
                 List listaProdutos = produto.listaTodos();
                 request.setAttribute("listaProdutos", listaProdutos);
                 getServletContext().getRequestDispatcher("/listarProdutos.jsp").forward(request, response);
-            } else if (cmd.equalsIgnoreCase("del")) {
-                Integer id = Integer.parseInt(request.getParameter("id"));
-                Produto prod = new Produto();
-                prod.setIdProduto(id);
-                produto.excluir(prod);
-                getServletContext().getRequestDispatcher("/cadPro?cmd=listar").forward(request, response);
 
             }
 

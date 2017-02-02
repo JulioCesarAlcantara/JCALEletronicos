@@ -17,25 +17,22 @@ public class ServletPromocao extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String cmd = request.getParameter("cmd");
         DAO dao;
 
-        request.setAttribute("adminEmail", getServletConfig().getInitParameter("adminEmail"));
-        //setando o valor default do cmd
         if (cmd == null) {
             cmd = "principal";
         }
-        
+
         try {
             dao = new PromocaoDAO();
-            RequestDispatcher rd = null; //setando o objeto "despachador"
             if (cmd.equalsIgnoreCase("saveAdd")) {
                 String nomePromocao = request.getParameter("nomePromo");
                 String dataInicioPromocao = request.getParameter("dataIni");
                 System.out.println("data começo: " + dataInicioPromocao);
                 String dataFimPromocao = request.getParameter("dataFim");
-                
+
                 Float descontoPromocao = Float.parseFloat(request.getParameter("descontoPromo"));
                 String statusPromocao = request.getParameter("statusPromo");
 
@@ -46,10 +43,10 @@ public class ServletPromocao extends HttpServlet {
                 Promocao promo = new Promocao(nomePromocao, dataI, dataF, descontoPromocao, statusPromocao);
                 dao.salvar(promo);
                 getServletContext().getRequestDispatcher("/promocao?cmd=listar").forward(request, response);
-                
+
             } else if (cmd.equalsIgnoreCase("listar")) {
                 List promocaoList = dao.listaTodos();
-                request.setAttribute("promocaoList", promocaoList); 
+                request.setAttribute("promocaoList", promocaoList);
                 getServletContext().getRequestDispatcher("/ListaPromocoes.jsp").forward(request, response);
 
             } else if (cmd.equalsIgnoreCase("update")) {
@@ -75,19 +72,19 @@ public class ServletPromocao extends HttpServlet {
                 dao.atualizar(promo);
                 getServletContext().getRequestDispatcher("/promocao?cmd=listar").forward(request, response);
 
-            } else if (cmd.equalsIgnoreCase("add")) {
-                getServletContext().getRequestDispatcher("/CadastroPromocao.jsp").forward(request, response);
-            } else if (cmd.equalsIgnoreCase("del")) {
-                Integer id = Integer.parseInt(request.getParameter("id"));
-                Promocao promo = new Promocao(id);
-                dao.excluir(promo);
-                getServletContext().getRequestDispatcher("/promocao?cmd=listar").forward(request, response);
             } else if (cmd.equalsIgnoreCase("vitrinePromo")) {
                 HttpSession sessao = request.getSession(true);
                 Integer id = Integer.parseInt(request.getParameter("id"));
                 sessao.setAttribute("idPromo", id);
                 getServletContext().getRequestDispatcher("/TelaDeProdutosDaPromocao.jsp").forward(request, response);
 
+            } else if (cmd.equalsIgnoreCase("del")) {
+                Integer id = Integer.parseInt(request.getParameter("id"));
+                Promocao promo = new Promocao(id);
+                dao.excluir(promo);
+                getServletContext().getRequestDispatcher("/promocao?cmd=listar").forward(request, response);
+            } else if (cmd.equalsIgnoreCase("add")) {
+                getServletContext().getRequestDispatcher("/CadastroPromocao.jsp").forward(request, response);
             }
 
         } catch (Exception e) {

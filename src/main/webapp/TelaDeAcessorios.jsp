@@ -153,7 +153,7 @@
             </footer>
 
             <%
-                    List<MostraProdutoImagem> lista = new ArrayList<MostraProdutoImagem>();
+                List<MostraProdutoImagem> lista = new ArrayList<MostraProdutoImagem>();
                 ProdutoDAO produto = new ProdutoDAO();
                 String pesquisa = request.getParameter("pesquisaPalavra");
 
